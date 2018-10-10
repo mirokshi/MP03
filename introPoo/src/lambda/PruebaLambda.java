@@ -22,7 +22,7 @@ public class PruebaLambda {
     }
     
     public static void main(String[] args) {
-//        ejemplo de clase anonima
+        //        ejemplo de clase anonima
         pruebaLambda("Bona"," tarde <3",
                 new Funcional(){
                    public String concadena(String a,String b){
@@ -32,12 +32,32 @@ public class PruebaLambda {
                 
                 );
         
-//        ejemplo de expresion lambda
-        pruebaLambda("Bona"," tarde",
+        //      ejemplo de expresion lambda
+        pruebaLambda("Bona"," tarde <3",
                 (String a, String b) -> a+b
                 );
         
-         
+//Con cuerpo
+        
+        //        ejemplo de clase anonima
+        pruebaLambda("Bona"," tarde <3",
+                new Funcional(){
+                   public String concadena(String a,String b){
+                       String c=a+b; 
+                       return c;
+                    }
+                }
+                
+                );
+        
+        //  ejemplo de expresion lambda
+        pruebaLambda("Bona"," tarde <3",
+                (String a, String b) -> {
+                    String c=a+b;
+                    return c;
+                }
+                );
+
     }
     
 }
