@@ -5,44 +5,51 @@
  */
 package lambda;
 
+
+
 /**
  *
  * @author mirokshi
  */
 public class Lambda {
-        interface OperacionMatematica {
-
-        int operar(int a, int b);
+    
+    //Interficie que contiene un metodo 
+        interface Persona {
+         //metodo datos persona que contiene tres tiposde datos diferentes (String, int y boolean)
+        String datosPersona(String nombre ,int  edad, boolean genero);
     }
         
-
-    public static int operar(int a, int b, OperacionMatematica OperacionMatematica) {
-        return OperacionMatematica.operar(a, b);
+//Metodo "datosPersona" que implementa la interficie 
+    public static String datosPersona(String nombre ,int edad,boolean genero, Persona Persona) {
+        return Persona.datosPersona(nombre, edad, genero);
     }
 
 
     public static void main(String args[]) {
 
-
-        //with type declaration
-        OperacionMatematica suma = (int a, int b) -> a + b;
-
-//        //with out type declaration
-//        OperacionMatematica resta = (a, b) -> a - b;
-//
-//        //with return statement along with curly braces
-//        OperacionMatematica multiplicacion = (int a, int b) -> {
-//            return a * b;
-//        };
-//
-//        //without return statement and without curly braces
-//        OperacionMatematica division = (int a, int b) -> a / b;
-
-        System.out.println("10 + 5 = " + operar(10, 5, suma));
+        //Declaracion de tipo de expresion Lamdba
+        Persona datosPersonaLamdba = (String nombre, int edad, boolean genero) ->"Nombre: "+ nombre+ "\nEdad: "+ Integer.toString(edad) +"\nEs hombre? : "+genero ;
         
-//        System.out.println("10 - 5 = " + tester.operar(10, 5, resta));
-//        System.out.println("10 x 5 = " + tester.operar(10, 5, multiplicacion));
-//        System.out.println("10 / 5 = " + tester.operar(10, 5, division));
+       
+        
+//Expresion Lamdba         
+        System.out.println("Expresion Lamdba");
+        System.out.println("------------------------");
+        System.out.println( datosPersona("Emilio Jose", 36,true, datosPersonaLamdba)); 
+      
+
+//Clase anonima
+        System.out.println("\nClase anonima");
+        System.out.println("--------------------------");    
+        System.out.println(datosPersona("Maria Cinta",23,false, 
+                new Persona(){
+                    public String datosPersona(String nombre,int edad, boolean genero ){
+                        return "Nombre: "+nombre+"\nEdad: "+Integer.toString(edad)+"\nEs hombre? : "+genero;
+                    }
+                }
+        ));
+       
+
 
         
     }
