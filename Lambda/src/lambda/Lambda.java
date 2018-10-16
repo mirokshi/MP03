@@ -21,6 +21,11 @@ public class Lambda {
         
 //Metodo "datosPersona" que implementa la interficie 
     public static String datosPersona(String nombre ,int edad,boolean genero, Persona Persona) {
+        if (genero == true) {
+            System.out.println("Hombre");
+        }else {
+            System.out.println("Mujer");
+        }
         return Persona.datosPersona(nombre, edad, genero);
     }
 
