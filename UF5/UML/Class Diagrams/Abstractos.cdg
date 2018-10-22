@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="Abstractos" package="abstractos" visibility="public" xPosition="66.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="arg"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Instrumento" package="abstractos" visibility="public" isAbstract="true" xPosition="382.0" yPosition="20.0">
+      <Fields>
+        <Field name="tipo" type="String" visibility="public"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="tocar" returnType="void" visibility="package" isAbstract="true"/>
+      </Methods>
+    </Class>
+    <Class name="Guitarra" package="abstractos" visibility="public" xPosition="224.0" yPosition="281.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="tocar" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Violin" package="abstractos" visibility="public" xPosition="675.0" yPosition="281.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="tocar" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Saxofon" package="abstractos" visibility="public" xPosition="434.0" yPosition="304.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="tocar" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="abstractos.Guitarra" target="abstractos.Instrumento"/>
+    <IsRelation name="is" source="abstractos.Violin" target="abstractos.Instrumento"/>
+    <IsRelation name="is" source="abstractos.Saxofon" target="abstractos.Instrumento"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
