@@ -18,19 +18,19 @@ class Colores {
     }
 }
 
-class Room extends Colores {
-
-    @Override
-    void color() throws IOException { //esto no funciona
-        System.out.println("WHITE");
-    }
-
-    public static void main(String args[]) {
-        Colores obj = new Room();
-        try {
-            obj.color();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-}
+//class Room extends Colores {
+//
+//    @Override
+//    void color() throws IOException { //esto no funciona
+//        System.out.println("WHITE");
+//    }
+//
+//    public static void main(String args[]) {
+//        Colores obj = new Room();
+//        try {
+//            obj.color();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
+//}
