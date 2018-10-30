@@ -18,23 +18,20 @@ import java.io.IOException;
 public class CreaDatos {
 
     static final String dataFile = "aleatorio";
-    static final int numero =142;
     
-
-
-
     public static void main(String[] args) throws IOException {
-
+        
+        int numero=1;
         DataOutputStream out = null;
         
 
         try {
             out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(dataFile)));
 
-            for (int i = 0; i < numero; i++) {
-                    out.writeUTF(" ");
-                    out.writeInt(numero);
-
+            for (int i = 0; i < 50; i++) {
+                numero++;
+                out.writeInt(numero);
+                System.out.print(numero);
             }
         } finally {
             if (out != null) {
