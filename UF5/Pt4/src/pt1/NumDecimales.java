@@ -10,18 +10,32 @@ package pt1;
  * @author mirokshi
  */
 public class NumDecimales {
+
     public static void main(String[] args) {
-        
-        
-        if (args.length!=0) {
-                
+
+        int decimales = 0, entero;
+
+        if (args.length != 0) {
+
             for (int i = 0; i < args.length; i++) {
-                System.out.println(args[i]);
-                
+
+                double argsdbl = Double.parseDouble(args[i]);
+                entero = (int) argsdbl;
+
+                System.out.println(argsdbl);
+
+                while (argsdbl > entero) {
+                    argsdbl *= 10;
+                    decimales++;
+                    entero = (int) argsdbl;
+                }
+
+                System.out.println("Tiene " + decimales + " decimales");
             }
-            
-            
+        } else {
+            System.out.println("Incorrecto | Error");
+
         }
-        
+
     }
 }

@@ -52,13 +52,20 @@ public class Pt4 {
 //         m.delete(1, 3);
 //         System.out.println(m); //Hoola! Adios!!
 //         
+
+//        
+//            System.out.println(args.length);
+//        
+//        System.out.println("1");
 //        if (args.length!=0) {
+//            System.out.println("2");
 //            for (int i = 0; i < args.length; i++) {
+//                System.out.println("3");
 //                System.out.println(args[i]);
 //            }
 //        }
-
-        
+//        System.out.println("4");
+//        
 //    }
-    
+//    
 }
