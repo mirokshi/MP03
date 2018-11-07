@@ -17,6 +17,7 @@ public class Iniciales {
         Scanner ent = new Scanner(System.in);
 
         String text, x="";
+        String signosDePuntuacion = "¡!¿?.,;: ";
        
         do {
 
@@ -25,18 +26,15 @@ public class Iniciales {
 
         } while (text.isEmpty());
         
-         String space = " ";
-        String textSubs = text.substring(0, 1);;
+         
+        String textSubs = text.substring(0, 1);
         
-        
-
-        
-
         for (int i = 0; i < text.length(); i++) {
             x = text.substring(i, i + 1);
 
-            if (x.equals(space)) {
-
+            if (signosDePuntuacion.contains(x)) {
+                text= text.replaceAll("\\"+x," ");
+                
                 x = text.substring(i + 1, i + 2);
                 textSubs = textSubs +" - "+ x;
 

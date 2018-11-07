@@ -30,10 +30,10 @@ public class Anagrama {
             palabra2=ent.nextLine();
         } while (palabra2.isEmpty());
         
-        
-        
         palabra1=palabra1.toLowerCase();
         palabra2=palabra2.toLowerCase();
+        
+        StringBuilder m=new StringBuilder(palabra1);
         
         System.out.println("Palabra 1 : "+palabra1);
         System.out.println("Palabra 2 :  "+palabra2);
