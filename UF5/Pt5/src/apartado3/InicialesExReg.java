@@ -23,17 +23,20 @@ public class InicialesExReg {
         
         String text;
         do {
-        System.out.println("Introduce un texto");    
-        text=console.next();
+        System.out.println("Introduce tun direccion de correo");    
+        text=console.nextLine();
         } while (text.isEmpty());
+
         
+
         Pattern p = Pattern.compile("\\b[a-zA-Z]"); 
         Matcher m = p.matcher(text); 
         
+        
+        System.out.println("Direcciones encontradas");
+        
                 while (m.find()) {
-                   System.out.print(m.group());
-                    System.out.println();
-                 
+                   System.out.print(m.group() );                   
                 }
         
         

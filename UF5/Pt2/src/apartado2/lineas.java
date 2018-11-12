@@ -27,16 +27,15 @@ public class lineas {
             inputStream2 = new BufferedReader(new FileReader("origin2"));
             outputStream = new PrintWriter(new FileWriter("fusion"));
 
-            String l;
+            String l,l2;
             
-            while ((l = inputStream1.readLine()) != null) {
+            while ((l = inputStream1.readLine()) != null && (l2 = inputStream2.readLine()) != null) {
                 outputStream.println(l);
-                
-            }
-            while ((l= inputStream2.readLine()) != null) {
-                outputStream.println(l);
+                outputStream.print(l2+ "\n");
+               
             }
             
+
             
         } finally {
             if (inputStream1 != null && inputStream2 != null) {

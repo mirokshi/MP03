@@ -18,6 +18,7 @@ public class getSupressed {
     public static void funcion1() throws Exception{
       throw new Exception();
   }
+    
   public static void funcion2() throws Throwable{
       try{
           funcion1();
@@ -25,6 +26,7 @@ public class getSupressed {
         throw e.fillInStackTrace();
       }
   }
+  
     public static void main(String[] args)throws Throwable {
         try{
        funcion2();

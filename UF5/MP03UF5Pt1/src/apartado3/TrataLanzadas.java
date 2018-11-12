@@ -29,6 +29,7 @@ public class TrataLanzadas {
             System.out.println("El valor es nulo"); 
             System.out.println("EXCEPCION : "+ne);
         } 
+       
         //3
         try { 
             String charA = "Me agrada programar :D "; 
