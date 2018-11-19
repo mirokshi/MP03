@@ -33,12 +33,15 @@ public class Arraylist {
         productos.add(p3);
         productos.add(p4);
         
-        
+        //muestro todos los productos
         productos.forEach(s->System.out.println(s));     
         
-        //elimmino todo
+        //elimmino producto 3
        productos.remove(p3);
         
+       
+       
+       
         //muestro
          Iterator<tienda> it=productos.iterator();
          System.out.println("\n");
