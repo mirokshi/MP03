@@ -15,34 +15,42 @@ public class Hashset {
 
 	public static void main(String[]args) 
 	{ 
-		HashSet<String> h = new HashSet<String>(); 
+		HashSet<pais> pais= new HashSet<>(); 
 
-		// Adding elements into HashSet usind add() 
-		h.add("India"); 
-		h.add("Australia"); 
-		h.add("South Africa"); 
-		h.add("India");// adding duplicate elements 
+                pais pais1=new pais("India", 3287263, 1210193422);
+                pais pais2=new pais("Uganda", 241038, 42971836);
+                pais pais3=new pais("Brasil",8515770, 208385000);
+                pais pais4=new pais("Grecia", 131957, 11329600);
+                       
+                
+                //agrego 4 paises
+                pais.add(pais1); 
+		pais.add(pais2); 
+		pais.add(pais3); 
+                pais.add(pais4);
+		pais.add(pais1);// agrego un elemento duplicado
 
-		// Displaying the HashSet 
-		System.out.println(h); 
-		System.out.println("List contains India or not:" + 
-						h.contains("India")); 
+                
+                //Listo los elementos
+                System.out.println(pais);
+                
+                 //Total de elementos en la lista
+                System.out.println("Numero de paises en la lista"+ pais.size());
+                
+                
+                //Uso la clase contains
+		System.out.println("La lista contiene Grecia? : " + pais.contains(pais4)); 
 
-		// Removing items from HashSet using remove() 
-		h.remove("Australia"); 
-		System.out.println("List after removing Australia:"+h); 
+		// Elimino uno de la lista
+		pais.remove(pais2); 
+		System.out.println("Liste despues de quitar Uganda:\n"+pais); 
 
-		// Iterating over hash set items 
-		System.out.println("Iterating over list:"); 
-		Iterator<String> i = h.iterator(); 
-		while (i.hasNext()) 
-			System.out.println(i.next()); 
 	} 
 }
 
-class Pais {
+class pais {
     private String nombre;
-    private double extension;
+    private int extension;
     private int poblacion;
 
     public String getNombre() {
@@ -57,7 +65,7 @@ class Pais {
         return extension;
     }
 
-    public void setExtension(double extension) {
+    public void setExtension(int extension) {
         this.extension = extension;
     }
 
@@ -69,7 +77,7 @@ class Pais {
         this.poblacion = poblacion;
     }
 
-    public Pais(String nombre, double extension, int poblacion) {
+    public pais(String nombre, int extension, int poblacion) {
         this.nombre = nombre;
         this.extension = extension;
         this.poblacion = poblacion;
@@ -77,11 +85,9 @@ class Pais {
 
     @Override
     public String toString() {
-        return "Pais{" + "nombre=" + nombre + ", extension=" + extension + ", poblacion=" + poblacion + '}';
+        return "Pais{" + "nombre=" + nombre + ", extension=" + extension + "km2 , poblacion=" + poblacion + "hab. }\n";
     }
     
-    
-
     
     
 }
@@ -89,8 +95,33 @@ class Pais {
 
 class Persona
 {
-    String nombre;
-    int edad;
+    private String nombre;
+    private String apellido;
+    private int edad;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
     
     
     

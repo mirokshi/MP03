@@ -18,9 +18,7 @@ public class PalindromoExReg {
     Scanner console=new Scanner(System.in);
     
     String text;
- 
-    
-    
+
     do {
             System.out.println("Introduce un texto");        
             text=console.nextLine();
