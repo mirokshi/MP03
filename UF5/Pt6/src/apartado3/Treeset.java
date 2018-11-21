@@ -76,8 +76,7 @@ class OrdenarLibros implements Comparator<Libro>{
     //Ordeno de mayor a menor
     @Override
     public int compare(Libro libro1, Libro libro2) {
-        
-        
+                
         if(libro1.id == libro2.id) return 0;
         if(libro1.id < libro2.id) return 1;
         if(libro1.id > libro2.id) return -1;
