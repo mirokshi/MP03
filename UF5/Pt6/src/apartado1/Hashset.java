@@ -92,7 +92,6 @@ class pais {
     
 }
 
-
 class Persona
 {
     private String nombre;
