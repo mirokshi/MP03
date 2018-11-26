@@ -3,35 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pt7;
+package mp3uf5pt7guimvc;
 
-import controller.controlador;
+import controller.Controller;
 import java.io.IOException;
-import model.modelo;
-import view.vista;
+import model.Model;
+import view.View;
 
 /**
  *
- * @author mirokshi
+ * @author profe
  */
-public class Pt7 {
+public class MP3UF5Pt7GUIMVC {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-         vista v=new vista();
+              
+        View v=new View();
         try {
             // TODO code application logic here
-            modelo m=new modelo();
-            controlador c=new controlador(m,v);
+            Model m=new Model();
+            Controller c=new Controller(m,v);
             v.setVisible(true);
         } catch (IOException|ClassNotFoundException ex) {
             v.showMessage("Error al llegir les dades.");
             System.exit(0);
         } 
     }
-    }
-    
 
+}
