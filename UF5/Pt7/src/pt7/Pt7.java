@@ -5,10 +5,10 @@
  */
 package pt7;
 
-import controller.controlador;
+import controller.Controller;
 import java.io.IOException;
-import model.modelo;
-import view.vista;
+import model.Model;
+import view.View;
 
 /**
  *
@@ -20,15 +20,15 @@ public class Pt7 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-         vista v=new vista();
+              
+        View v=new View();
         try {
             // TODO code application logic here
-            modelo m=new modelo();
-            controlador c=new controlador(m,v);
+            Model m=new Model();
+            Controller c=new Controller(m,v);
             v.setVisible(true);
         } catch (IOException|ClassNotFoundException ex) {
-            v.showMessage("Error al llegir les dades.");
+            v.showMessage("Error al leer los datos.");
             System.exit(0);
         } 
     }

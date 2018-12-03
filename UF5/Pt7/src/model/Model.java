@@ -14,36 +14,39 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import model.Person.Gender;
+import model.Entinguisher.Type;
+import model.Entinguisher.Size;
 
 /**
  *
- * @author mirokshi
+ * @author profe
  */
-public class modelo {
-  private Collection<Person> data;
+public class Model {
+
+    private Collection<Entinguisher> data;
     private File f;
 
-    public modelo() throws IOException, FileNotFoundException, ClassNotFoundException {
+    public Model() throws IOException, FileNotFoundException, ClassNotFoundException {
         this(null);
     }
     
-    public modelo(String fileName) throws IOException, FileNotFoundException, ClassNotFoundException {
+    public Model(String fileName) throws IOException, FileNotFoundException, ClassNotFoundException {
         setFile(fileName);
         loadData();
     }
 
     public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException {
 
-        data = new ArrayList<Person>();
+        data = new ArrayList<Entinguisher>();
         if (f.exists()) {
             try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)))) {
 
                 while (true) {
-                    Person b=(Person) in.readObject();
+                    Entinguisher b=(Entinguisher) in.readObject();
                     if(b!=null) data.add(b);
                 }
 
@@ -53,7 +56,6 @@ public class modelo {
     }
 
     public void setFile(String nom) {
-        //Si passen un nom incorrecte o buit li poso data.dat
         nom = nom == null || nom.isEmpty()? "data.dat" : nom;
         f = new File(nom);
     }
@@ -62,7 +64,7 @@ public class modelo {
 
         
         try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(f))) {
-            Iterator<Person> it = data.iterator();
+            Iterator<Entinguisher> it = data.iterator();
             while (it.hasNext()) {
                 out.writeObject(it.next());
             }
@@ -70,32 +72,32 @@ public class modelo {
 
     }
 
-    public void addData(String name,String dni, Object gender) {
-        Person p=new Person(name,dni,(Person.Gender)gender);
-        data.add(p);
+    public void addData(String model,Object type, Object size) {
+        Entinguisher b=new Entinguisher(model,(Entinguisher.Type)type,(Entinguisher.Size)size);
+        data.add(b);
+
 
     }
 
-    public void modifyData(Object obj,String personName,String dni, Object gender) {
-        //Per modificar la bicicleta la passem des del controlador junt en els 
-        //nous valors a prendre. Com és un objecte s'actualitzarà automàticament
-        //dins l'ArrayList
-        Person p=(Person)obj;
-        p.set_1_PersonName(personName);
-        p.set_2_Dni(dni);
-        p.set_3_Gender((Person.Gender)gender);
+    public void modifyData(Object obj,String modelName,Object type, Object size) {
+       
+        Entinguisher b=(Entinguisher)obj;
+        b.set_1_ModelName(modelName);
+        b.set_2_Type((Entinguisher.Type)type);
+        b.set_3_Size((Entinguisher.Size)size);
     }
 
     public void removeData(Object obj) {
-        //Per borrar la bicicleta la passem des del controlador 
-        Person b=(Person)obj;
+       
+        Entinguisher b=(Entinguisher)obj;
         data.remove(b);
     }
 
-    public Collection<Person> getData() {
+    public Collection<Entinguisher> getData() {
         return data;
     }
     
     
-   
+
 }
+
