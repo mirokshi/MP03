@@ -1,0 +1,8 @@
+MP03 UF6 Pt1 
+ Alumno : Mirokshi Rojas Diaz 
+Puntos implementados :
+-Archivo 'properties' para conectarse a la BD
+-Uso de prepareStatements
+-CRUD de la tablas
+
+
