@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/mirokshi/code/mirokshi/ProjectsJava/mp06/pruebaOrm/src/principal/principal.java</file>
+            <file>file:/home/mirokshi/code/mirokshi/ProjectsJava/mp06/pruebaOrm/src/data/Pintores.xml</file>
+            <file>file:/home/mirokshi/code/mirokshi/ProjectsJava/mp06/pruebaOrm/src/dao/PintoresDAO.java</file>
+            <file>file:/home/mirokshi/code/mirokshi/ProjectsJava/mp06/pruebaOrm/src/mybatis-config.xml</file>
+            <file>file:/home/mirokshi/code/mirokshi/ProjectsJava/mp06/pruebaOrm/src/model/Pintores.java</file>
+            <file>file:/home/mirokshi/code/mirokshi/ProjectsJava/mp06/pruebaOrm/src/dao/MyBatisConnectionFactory.java</file>
+        </group>
+    </open-files>
+</project-private>
