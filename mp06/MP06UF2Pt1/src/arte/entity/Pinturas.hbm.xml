@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 mar. 2019 16:48:34 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="arte" name="arte.entity.Pinturas" optimistic-lock="version" table="pinturas">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="arte.entity.Pintores" fetch="select" name="pintor">
+      <column name="id_pintor" not-null="true"/>
+    </many-to-one>
+    <property name="nombre" type="string">
+      <column length="70" name="nombre" not-null="true"/>
+    </property>
+    <property name="epoca" type="string">
+      <column length="50" name="epoca" not-null="true"/>
+    </property>
+    <property name="fechaCreacion" type="int">
+      <column name="fecha_creacion" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

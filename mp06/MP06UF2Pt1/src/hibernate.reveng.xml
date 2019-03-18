@@ -40,9 +40,7 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="mp06"/>
-  <table-filter match-name="mantenimiento"/>
-  <table-filter match-name="piloto"/>
-  <table-filter match-name="modelo"/>
-  <table-filter match-name="vehiculos"/>
+  <schema-selection match-catalog="arte"/>
+  <table-filter match-name="pintores"/>
+  <table-filter match-name="pinturas"/>
 </hibernate-reverse-engineering>
