@@ -22,6 +22,8 @@ public class Receptor implements PropertyChangeListener {
         System.out.println("Valor actual: "+evt.getNewValue());
         
         
+                
+        
     }
     
 }

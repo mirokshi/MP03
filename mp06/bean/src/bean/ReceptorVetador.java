@@ -17,7 +17,7 @@ public class ReceptorVetador implements VetoableChangeListener {
 
     @Override
     public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
-        if ((int)evt.getNewValue()==10) {
+        if ((int)evt.getNewValue()<0) {
             System.out.println("Cambio impedido a la propiedad :"+evt.getPropertyName());
             System.out.println("Motivo: nuevo valor "+evt.getNewValue()+" incorrecto");
             throw new PropertyVetoException("error",evt);
@@ -26,7 +26,6 @@ public class ReceptorVetador implements VetoableChangeListener {
         System.out.println("Valor anterior: "+evt.getOldValue());
         System.out.println("Valor actual: "+evt.getNewValue());
         }
-
     }
     
 }
