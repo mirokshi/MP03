@@ -36,7 +36,7 @@ public class MP06UF2Pt2 {
             System.out.println(pinturas.getId() + "\t"+ pinturas.getNombre() +"\t"+ pinturas.getEpoca() + "\t"+pinturas.getId_pintor());
             
         }
-         
+//         
 //        System.out.println("INSERTANDO UN NUEVO PINTOR");
 //        Pintores nuevoPintor = new Pintores();
 //        nuevoPintor.setNombre("Claude");

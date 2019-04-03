@@ -25,7 +25,7 @@ public class principal {
         nuevoPintor.setNombre("Hola");
         nuevoPintor.setApellido("ssss");
         nuevoPintor.setEdad(34);
-        dao.insert(nuevoPintor);
+//        dao.insert(nuevoPintor);
         System.out.println("--------------------");
         lstVehiculos = dao.selectAll();
         

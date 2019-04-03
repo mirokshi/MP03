@@ -21,7 +21,7 @@ import java.util.Properties;
  */
 public class Model {
 
-    private static Connection conneccion = null;
+    private static Connection conexion = null;
     private static ResultSet resultSet = null;
     private static PreparedStatement sentenciaActTabla = null;
 
@@ -38,7 +38,8 @@ public class Model {
             password = props.getProperty("db.password");
             crearConnexio(url, user, password);
         } catch (IOException ex) {
-            System.err.println("No s'ha pogut establir la connexió a la BD...");
+            System.err.println("Los datos introducidos no son correctos");
+            System.out.println(ex);
             System.exit(0);
         }
     }
@@ -50,8 +51,8 @@ public class Model {
         if (resultSet != null) {
             resultSet.close();
         }
-        if (conneccion != null) {
-            conneccion.close();
+        if (conexion != null) {
+            conexion.close();
         }
         System.out.println("Cerrando la conección a la BD...");
         super.finalize(); //To change body of generated methods, choose Tools | Templates.
@@ -59,10 +60,11 @@ public class Model {
 
     private void crearConnexio(String url, String usuari, String password) {
         try {
-            conneccion = DriverManager.getConnection(url, usuari, password);
+            conexion = DriverManager.getConnection(url, usuari, password);
             System.out.println("Conectando a la BD...");
         } catch (SQLException ex) {
             System.err.println("No se ha podido establecer coneccion a la BD...");
+            System.out.println(ex);
             System.exit(0);
         }
 
@@ -71,7 +73,7 @@ public class Model {
     public void insertarPintor(String first_name, String last_name) {
 
         String sql = "INSERT INTO pintores (first_name, last_name) VALUES (? , ?)";
-        try (PreparedStatement sentenciaPr = conneccion.prepareStatement(sql)) {
+        try (PreparedStatement sentenciaPr = conexion.prepareStatement(sql)) {
             sentenciaPr.setString(1, first_name);
             sentenciaPr.setString(2, last_name);
             sentenciaPr.executeUpdate();
@@ -83,34 +85,37 @@ public class Model {
     public void insertarPintura(String picture_name, String picture_date) {
 
         String sql = "INSERT INTO pinturas (picture_name, picture_date) VALUES (? , ?)";
-        try (PreparedStatement sentenciaPr = conneccion.prepareStatement(sql)) {
+        try (PreparedStatement sentenciaPr = conexion.prepareStatement(sql)) {
             sentenciaPr.setString(1, picture_name);
             sentenciaPr.setString(2, picture_date);
             sentenciaPr.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Error al insertar una pinttura");
+            System.out.println(ex);
         }
     }
 
     public void borrarPintor(int actor_id) {
 
         String sql = "DELETE FROM pintores WHERE pintor_id=?";
-        try (PreparedStatement sentenciaPr = conneccion.prepareStatement(sql)) {
+        try (PreparedStatement sentenciaPr = conexion.prepareStatement(sql)) {
             sentenciaPr.setInt(1, actor_id);
             sentenciaPr.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Error al borrar el pintor!!");
+            System.out.println(ex);
         }
     }
 
     public void borrarPintura(int pintura_id) {
 
         String sql = "DELETE FROM pinturas WHERE pintura_id=?";
-        try (PreparedStatement sentenciaPr = conneccion.prepareStatement(sql)) {
+        try (PreparedStatement sentenciaPr = conexion.prepareStatement(sql)) {
             sentenciaPr.setInt(1, pintura_id);
             sentenciaPr.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Error al borrar !!");
+            System.out.println(ex);
         }
 
     }
@@ -119,13 +124,14 @@ public class Model {
 
         String sql = "UPDATE pintores SET first_name=?, last_name=? "
                 + "WHERE pintor_id=?";
-        try (PreparedStatement sentenciaPr = conneccion.prepareStatement(sql)) {
+        try (PreparedStatement sentenciaPr = conexion.prepareStatement(sql)) {
             sentenciaPr.setString(1, first_name);
             sentenciaPr.setString(2, last_name);
             sentenciaPr.setInt(3, actor_id);
             sentenciaPr.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Error al modificar el pintor!!");
+            System.out.println(ex);
         }
 
     }
@@ -141,7 +147,7 @@ public class Model {
 
         try {
             //La instàncio aquí i no en un try_with_resources per què per poder actualitzar la taula que rep les dades la sentència ha d'estar oberta 
-            sentenciaActTabla = conneccion.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            sentenciaActTabla = conexion.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             this.resultSet = sentenciaActTabla.executeQuery();
 
             if (this.resultSet != null) {
@@ -156,6 +162,7 @@ public class Model {
             }
         } catch (SQLException ex) {
             System.err.println("Error al listar los pintores!!");
+            System.out.println(ex);
         }
         return lista;
     }
@@ -170,7 +177,7 @@ public class Model {
 
         try {
             //La instàncio aquí i no en un try_with_resources per què per poder actualitzar la taula que rep les dades la sentència ha d'estar oberta 
-            sentenciaActTabla = conneccion.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            sentenciaActTabla = conexion.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             this.resultSet = sentenciaActTabla.executeQuery();
 
             if (this.resultSet != null) {
@@ -185,6 +192,7 @@ public class Model {
             }
         } catch (SQLException ex) {
             System.err.println("Error al listar las pinturas!!");
+            System.out.println(ex);
         }
         return lista;
     }

@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/mvcmysql/model/Model.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>204</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="UF6"/>
         <group name="MP06"/>
+        <group>
+            <file>file:/home/mirokshi/code/mirokshi/ProjectsJava/mp03/UF6/MP03UF6Pt1/src/mvcmysql/controller/Controlador.java</file>
+            <file>file:/home/mirokshi/code/mirokshi/ProjectsJava/mp03/UF6/MP03UF6Pt1/src/mvcmysql/MVCMySQL.java</file>
+            <file>file:/home/mirokshi/code/mirokshi/ProjectsJava/mp03/UF6/MP03UF6Pt1/src/mvcmysql/model/Model.java</file>
+            <file>file:/home/mirokshi/code/mirokshi/ProjectsJava/mp03/UF6/MP03UF6Pt1/src/mvcmysql/view/VistaPintores.java</file>
+        </group>
     </open-files>
 </project-private>

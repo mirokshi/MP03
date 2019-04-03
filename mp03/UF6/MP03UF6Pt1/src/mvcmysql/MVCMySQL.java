@@ -25,7 +25,6 @@ public class MVCMySQL {
     public static void main(String[] args) {
 //        PINTORES Y PINTURAS FAMOSAS 
         Controlador controlador = new Controlador(model, vista);
-
     }
     
 }

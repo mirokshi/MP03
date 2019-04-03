@@ -56,7 +56,5 @@ public class Pinturas {
     public void setId_pintor(Pintores id_pintor) {
         this.id_pintor = id_pintor;
     }
-    
-    
            
 }
