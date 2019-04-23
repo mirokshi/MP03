@@ -288,7 +288,7 @@ class ModelCanvisBD extends DefaultTableModel {
                 } catch (SQLException ex) {
                     //Logger.getLogger(JFramePelis.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassCastException ex) {
-                    JOptionPane.showMessageDialog(null, "Canvi de dada incorrecte!!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Canmbio de datos incorrecto!!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }

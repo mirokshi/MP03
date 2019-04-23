@@ -223,7 +223,7 @@ public class Pt5 {
             System.out.println(e);
             System.out.println("HOUSTON, tenemos un problema");
         } finally {
-            f.delete();
+            
             if (db != null) {
                 db.close();
             }

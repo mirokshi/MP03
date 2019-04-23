@@ -22,7 +22,7 @@ import java.util.Properties;
 
 /**
  *
- * @author profe
+ * @author mirokshi
  */
 public class Model {
 
@@ -193,6 +193,7 @@ public class Model {
             System.out.println("Conectando a la BD...");
         } catch (SQLException ex) {
             System.err.println("No se ha podido establecer coneccion a la BD...");
+            System.out.println(ex);
             System.exit(0);
         }
 

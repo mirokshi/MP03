@@ -33,31 +33,9 @@ public class MP06UF2Pt2 {
         List<Pinturas> lstPinturas = daoPinturas.selectAll();
         System.out.println("------PINTURAS------");
         for (Pinturas pinturas : lstPinturas) {
-            System.out.println(pinturas.getId() + "\t"+ pinturas.getNombre() +"\t"+ pinturas.getEpoca() + "\t"+pinturas.getId_pintor());
+            System.out.println(pinturas.getId() + "\t"+ pinturas.getNombre() +"\t"+ pinturas.getEpoca()+"\t"+(Pintores)pinturas.getId_pintor());
             
         }
-//         
-//        System.out.println("INSERTANDO UN NUEVO PINTOR");
-//        Pintores nuevoPintor = new Pintores();
-//        nuevoPintor.setNombre("Claude");
-//        nuevoPintor.setApellido("Monet");
-//        nuevoPintor.setEdad(86);
-//        daoPintores.insert(nuevoPintor);
-//        
-//        System.out.println("INSERTANDO UNA NUEVA PINTURA");
-//        Pinturas nuevaPintura = new Pinturas();
-//        nuevaPintura.setNombre("hola");
-//        nuevaPintura.setEpoca("nose");
-//        nuevaPintura.setFecha_creacion(1936);
-//        nuevaPintura.setId_pintor(nuevoPintor);
-//        daoPinturas.insert(nuevaPintura);
-//        
-//        lstVehiculos = daoPintores.selectAll();
-//        
-//        for (Pintores Pintores : lstVehiculos) {
-//            System.out.println(Pintores.getId() + "\t" + Pintores.getNombre());
-//        }
-//      
     }
     
 }

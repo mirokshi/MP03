@@ -31,7 +31,7 @@ import static utilscontroller.Utils.loadTable;
 
 /**
  *
- * @author profe
+ * @author mirokshi
  */
 public final class Controlador {
 

@@ -5,17 +5,20 @@
  */
 package mp6uf2pt3;
 
+import view.vista;
+
 /**
  *
  * @author mirokshi
  */
 public class MP6UF2Pt3RojasMirokshi {
+    
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        new vista().setVisible(true);
     }
     
 }

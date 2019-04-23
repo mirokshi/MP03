@@ -20,12 +20,14 @@ public class ReceptorVetador implements VetoableChangeListener{
     @Override
     public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
         if (Model.PROP_DATABASE.equals(evt.getPropertyName())) {
-            String pattern = "jdbc:mysql:\\/\\/[\\S]+[:][\\d]+[/]";
+            String pattern = "jdbc:mysql:\\/\\/[\\S]+[:][\\d]+[/][\\S]+[?]+[\\S]+";
+            String i ="jdbc:mysql://localhost:3306/";
+            String f ="?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             Pattern r = Pattern.compile(pattern);
             System.out.println(evt.getNewValue().toString());
             Matcher m = r.matcher(evt.getNewValue().toString());
             if (!m.find()) {
-                System.out.println("No s'ha pogut canviar la propietat 'DATABASE'. Potser el valor es invalid");
+                System.out.println("Error al cambiar de base de datos");
                 throw new PropertyVetoException("error", evt);
             }
 
@@ -35,7 +37,7 @@ public class ReceptorVetador implements VetoableChangeListener{
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(evt.getNewValue().toString());
             if (m.find()) {
-                System.out.println("No s'ha pogut canviar la propietat 'DBUSER'. Potser el valor es invalid");
+                System.out.println("Error al cambiar el usuario");
                 throw new PropertyVetoException("error", evt);
             }
 
@@ -46,7 +48,7 @@ public class ReceptorVetador implements VetoableChangeListener{
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(evt.getNewValue().toString());
             if (m.find()) {
-                System.out.println("No s'ha pogut canviar la propietat 'DBPASSWORD'. No cumpleix amb els standards de seguretat");
+                System.out.println("Error al cambiar la contraseña");
             throw new PropertyVetoException("error", evt);
             
             }

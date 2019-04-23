@@ -24,7 +24,6 @@ public class MP06UF4Pt3{
      * @throws java.beans.PropertyVetoException
      */
     public static void main(String[] args)  throws PropertyVetoException {
-//        PINTORES Y PINTURAS FAMOSAS 
          VistaPintores vista=new VistaPintores(); 
          Model model=new Model();
          Receptor r = new Receptor();
@@ -32,11 +31,12 @@ public class MP06UF4Pt3{
          model.addPropertyChangeListener(r);
          model.addVetoableChangeListener(rv);
          
-         
+         model.setDatabase("jdbc:mysql://localhost:3306/mp03?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
          model.setUserDb("debian-sys-maint");
          model.setPasswordDb("VhwKTX3PssrBuWGp");
          Controlador controlador = new Controlador(model, vista);
          vista.setVisible(true);
+         
         
         
     }

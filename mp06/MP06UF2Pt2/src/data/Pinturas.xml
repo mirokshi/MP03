@@ -1,51 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Pinturas">
     
     <resultMap id="result" type="model.Pinturas">
-        <result property="id" column="ID"/>
+        <id property="id" column="ID"/>
         <result property="nombre" column="NOMBRE"/>
         <result property="epoca" column="EPOCA"/>
         <result property="fecha_creacion" column="FECHA_CREACION"/>
-        <association property="id_pintor" column="ID_PINTOR" resultMap="dao.PintoresDAO.selectAll"/>
+        <association property="id_pintor" column="ID_PINTOR" select="selectPintor"/>
     </resultMap>
     
     
-    <select id="selectPintor" parameterType="int" resultMap="result">
-        SELECT id, nombre, epoca, fecha_creacion, pinturas.id_pintor
-        FROM mp06.pinturas
-        INNER JOIN mp06.pintores ON pinturas.id_pintor = pintores.id
-        WHERE id = #{id}
+    <select id="selectPintor" resultMap="Pintores.result" parameterType="String" >
+        SELECT * FROM pintores WHERE id = #{ID_PINTOR}
     </select>
     
     <select id="getAll" resultMap="result">
-        SELECT * FROM mp06.pinturas;        
+        SELECT * FROM pinturas;        
     </select>
     
     
     <select id="getById" parameterType="int" resultMap="result">
-        SELECT * FROM mp06.pinturas WHERE ID = #{id}
+        SELECT * FROM pinturas WHERE ID = #{id}
     </select>
     
     <delete id="deleteById" parameterType="int">
-        DELETE FROM mp06.pinturas WHERE ID = #{id};
+        DELETE FROM pinturas WHERE ID = #{id};
     </delete>
     
     <insert id="insert" parameterType="model.Pinturas">
-    INSERT INTO mp06.pinturas (nombre, epoca, fecha_creacion, id_pintor)
-        VALUES (#{nombre}, #{epoca}, #{fecha_creacion}, #{id_pintor});
+    INSERT INTO pinturas (nombre, epoca, fecha_creacion, id_pintor)
+        VALUES (#{nombre}, #{epoca}, #{fecha_creacion}, #{id_pintor.id});
     </insert>
     
     <update id="update" parameterType="model.Pinturas">
-        UPDATE mp06.pinturas
+        UPDATE pinturas
         SET
             nombre = #{nombre},
             epoca = #{epoca},
             fecha_creacion = #{fecha_creacion},
-            id_pintor = #{id_pintor}
+            id_pintor = #{id_pintor.id}
         WHERE ID = #{id};
     </update>
     

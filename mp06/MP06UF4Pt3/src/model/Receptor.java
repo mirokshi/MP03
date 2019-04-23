@@ -16,15 +16,15 @@ public class Receptor implements PropertyChangeListener {
      @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (Model.PROP_DATABASE.equals(evt.getPropertyName())) {
-                System.out.println("La base de dades es diu " + evt.getNewValue().toString());
+                System.out.println("BD: " + evt.getNewValue().toString());
             
         }
         if (Model.PROP_USERDB.equals(evt.getPropertyName())) {
-                System.out.println("L'usuari de la connexió és: " + evt.getNewValue().toString());
+                System.out.println("USER: " + evt.getNewValue().toString());
             
         }
         if (Model.PROP_PASSWORDDB.equals(evt.getPropertyName())) {
-                System.out.println("La contrassenya es correcta");
+                System.out.println("CORRECT PASSWORD!");
             
         }
 
