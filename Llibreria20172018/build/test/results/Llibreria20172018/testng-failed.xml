@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Llibreria20172018]">
+  <test name="metodes suite(failed)">
+    <classes>
+      <class name="metodes.NumerosNGTest">
+        <methods>
+          <include name="setUpMethod"/>
+          <include name="tearDownMethod"/>
+          <include name="setUpClass"/>
+          <include name="tearDownClass"/>
+        </methods>
+      </class> <!-- metodes.NumerosNGTest -->
+      <class name="metodes.CadenesNGTest">
+        <methods>
+          <include name="testMostraMissatgeSanti"/>
+          <include name="testSubcadena"/>
+          <include name="tearDownClass"/>
+          <include name="testBuscaParaula"/>
+          <include name="tearDownMethod"/>
+          <include name="testBuscaParaula20162017"/>
+          <include name="setUpMethod"/>
+          <include name="testBuscaParaulavDissenyModular"/>
+          <include name="setUpClass"/>
+          <include name="testBuscaCadena"/>
+        </methods>
+      </class> <!-- metodes.CadenesNGTest -->
+    </classes>
+  </test> <!-- metodes suite(failed) -->
+</suite> <!-- Failed suite [Llibreria20172018] -->
