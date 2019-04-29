@@ -1,0 +1,39 @@
+db.users.insert({
+    "user_id" :"user5",
+    "password": "1a2b3c",
+  "sex": "Male",
+  "age": 17,
+  "date_of_join": "16/10/2010",
+  "education": "M.C.A.",
+  "profession": "CONSULTANT",
+  "interest": "MUSIC",
+  "extra": {
+    "community_name": [
+      "MODERN MUSIC",
+      "CLASSICAL MUSIC",
+      "WESTERN MUSIC"
+    ],
+    "community_moder_id": [
+      "MR. Alex",
+      "MR. Dang",
+      "MR. Haris"
+    ],
+    "community_members": [
+      700,
+      200,
+      1500
+    ],
+    "friends": {
+      "valued_friends_id": [
+        "kumar",
+        "harry",
+        "anand"
+      ],
+      "ban_friends_id": [
+        "Amir",
+        "Raja",
+        "mont"
+      ]
+    }
+  }
+})

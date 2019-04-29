@@ -167,7 +167,7 @@ public class Model {
             password = props.getProperty("db.password");
             crearConnexio(url, user, password);
         } catch (IOException ex) {
-            System.err.println("No s'ha pogut establir la connexió a la BD...");
+            System.err.println("No se ha podido establecer coneccion a la BD...");
             System.exit(0);
         }
     }
@@ -187,9 +187,9 @@ public class Model {
         super.finalize(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void crearConnexio(String url, String usuari, String password) {
+    private void crearConnexio(String url, String user, String password) {
         try {
-            conneccion = DriverManager.getConnection(url, usuari, password);
+            conneccion = DriverManager.getConnection(url, user, password);
             System.out.println("Conectando a la BD...");
         } catch (SQLException ex) {
             System.err.println("No se ha podido establecer coneccion a la BD...");
@@ -298,7 +298,7 @@ public class Model {
      */
     public ArrayList<Pinturas> listarPinturas() {
         ArrayList lista = new ArrayList();
-        String sql = "SELECT pintura_id, picture_name, picture_date FROM pinturas ORDER BY 1;";
+        String sql = "SELECT * FROM pinturas ORDER BY 1;";
 
         try {
             //La instàncio aquí i no en un try_with_resources per què per poder actualitzar la taula que rep les dades la sentència ha d'estar oberta 

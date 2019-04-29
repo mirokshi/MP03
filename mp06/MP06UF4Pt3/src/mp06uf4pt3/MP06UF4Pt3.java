@@ -31,9 +31,28 @@ public class MP06UF4Pt3{
          model.addPropertyChangeListener(r);
          model.addVetoableChangeListener(rv);
          
-         model.setDatabase("jdbc:mysql://localhost:3306/mp03?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-         model.setUserDb("debian-sys-maint");
-         model.setPasswordDb("VhwKTX3PssrBuWGp");
+         String i ="jdbc:mysql://localhost:3306/";
+         String f ="?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+         String bd="mp03";
+         
+         try {
+            model.setDatabase(i+bd+f);
+        } catch (PropertyVetoException e) {
+        }
+         
+         try {
+         model.setUserDb("debian-sys-maint");   
+        } catch (PropertyVetoException e) {
+             System.out.println("\nNo se ha permitido el cambio\n");
+        }
+         
+         try {
+            model.setPasswordDb("VhwKTX3PssrBuWGp");
+        } catch (PropertyVetoException e) {
+            System.out.println("\nNo se ha permitido el cambio\n");
+        }
+         
+         
          Controlador controlador = new Controlador(model, vista);
          vista.setVisible(true);
          
