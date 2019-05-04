@@ -9,6 +9,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -28,18 +29,44 @@ public class CadenesTest {
     }
 
     /**
+     * @group Profe
      * Test of mostraMissatgeSanti method, of class Cadenes.
      */
     @Test
     public void testMostraMissatgeSanti() {
-        System.out.println("mostraMissatgeSanti");
+        System.out.println("mostraMissatgeSanti -> Cadena vacia");
         String missatge = "";
         Cadenes.mostraMissatgeSanti(missatge);
+        
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
+    
+    /**
+    * @group Mirokshi
+    * Test of mostraMissatgeSanti method, of class Cadenes.
+    */
+    @Test
+    public void testMostraMissatgeSantiParemeterCorrect() {
+        System.out.println("mostraMissatgeSanti -> Valor String");
+        String missatge = "Hola";
+        Cadenes.mostraMissatgeSanti(missatge);
+        
+    }
+    
+    /**
+    * @group Mirokshi
+    * Test of mostraMissatgeSanti method, of class Cadenes.
+    */
+    @Test
+    public void testMostraMissatgeSantiParameterNull() {
+        System.out.println("mostraMissatgeSanti -> Valor null");
+        String missatge = null;
+        Cadenes.mostraMissatgeSanti(missatge);
+    }
 
     /**
+     * @group Profe
      * Test of buscaCadena method, of class Cadenes.
      */
     @Test
@@ -54,24 +81,161 @@ public class CadenesTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
-
+    
     /**
-     * Test of buscaParaulavDissenyModular method, of class Cadenes.
+     * @group Mirokshi
+     * Test of buscaCadena method, of class Cadenes.
      */
     @Test
-    public void testBuscaParaulavDissenyModular() {
-        System.out.println("buscaParaulavDissenyModular");
-        String text = "";
-        String paraula = "";
-        int posicio = 0;
-        int expResult = 0;
-        int result = Cadenes.buscaParaulavDissenyModular(text, paraula, posicio);
+    public void testBuscaCadenaTwoParametersNull(){
+        System.out.println("testBuscaCadenaTwoParametersNull");
+        System.out.println("-> si los dos o algunos de los strings son null = -1 ");
+        String cadena1= null;
+        String cadena2 = null;
+        int num = 0;
+        //Resultado
+        int expResult = -1;
+        int result =  Cadenes.buscaCadena(cadena1, cadena2, num);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 
     /**
+     * @group Mirokshi
+     * Test of buscaCadena method, of class Cadenes.
+     */
+    @Test
+    public void testBuscaCadenaOneParameterNull(){
+        System.out.println("testBuscaCadenaOneParameterNull");
+        System.out.println("-> si un string es null = -1");
+        String cadena1= null;
+        String cadena2 = "subcadena";
+        int num = 0;
+        //Resultado
+        int expResult = -1;
+        int result =  Cadenes.buscaCadena(cadena1, cadena2, num);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * @group Mirokshi
+     * Test of buscaCadena method, of class Cadenes.
+     */
+    @Test
+    public void testBuscaCadenaNumberNegative(){
+        System.out.println("testBuscaCadenaNumberNegative");
+        System.out.println("-> si el numero es negativo = 0");
+        String cadena1= "textex";
+        String cadena2 = "";
+        int num = -10;
+        //Resultado
+        int expResult = 0;
+        int result =  Cadenes.buscaCadena(cadena1, cadena2, num);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * @group Mirokshi
+     * Test of buscaCadena method, of class Cadenes.
+     */
+    @Test
+    public void testBuscaCadenaSecondParameterEmpty(){
+        System.out.println("testBuscaCadenaSecondParameterEmpty");
+        System.out.println("-> si el segundo string es vacio retornará el valor menor entre el numero y la"
+                + "longitud del primer string");
+        String cadena1= "textex";
+        String cadena2 = "";
+        int num = 2;
+        //Resultado
+        int expResult = 2;
+        int result =  Cadenes.buscaCadena(cadena1, cadena2, num);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * @group Mirokshi
+     * Test of buscaCadena method, of class Cadenes.
+     */
+    @Test
+    public void testBuscaCadenaNumberExceedsLength(){
+        System.out.println("testBuscaCadenaNumberExceedsLength");
+        System.out.println("Si el numero es superior o igual a la longitud del primer string = -1");
+        String cadena1= "textex";
+        String cadena2 = "ex";
+        //Resultado
+        int expResult = -1;
+        int result =  Cadenes.buscaCadena(cadena1, cadena2, cadena1.length());
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * @group Mirokshi
+     * Test of buscaCadena method, of class Cadenes.
+     */
+    @Test
+    public void testBuscaCadenaOK(){
+        System.out.println("testBuscaCadenaOK");
+        System.out.println("Prueba de la ejecución correcta del metodo");
+        String cadena1= "textex";
+        String cadena2 = "";
+        int num = 20;
+        //Resultado
+        int expResult = 6;
+        int result =  Cadenes.buscaCadena(cadena1, cadena2, num);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * @group Mirokshi
+     * Test of buscaCadena method, of class Cadenes.
+     */
+    @Test(timeout=1000)
+    public void testBuscaCadenawithTimeout(){
+        System.out.println("testBuscaCadenaWithTimeout");
+        String cadena1= "textex";
+        String cadena2 = "";
+        int num = cadena1.length()+10;
+        //Resultado
+        int expResult = 6;
+        int result =  Cadenes.buscaCadena(cadena1, cadena2, num);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * @group Mirokshi
+     * Test of buscaCadena method, of class Cadenes.
+     */
+    @Test(expected=RuntimeException.class)
+    public void testBuscaCadenaWithException(){
+        System.out.println("testBuscaCadenaWithException");
+        System.out.println("Expected error -> RuntimeException");
+        String cadena1= "textex";
+        String cadena2 = "";
+        int num = cadena1.length()+10;
+        //Resultado
+        int expResult = 6;
+        int result =  Cadenes.buscaCadena(cadena1, 2, num);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * @group Mirokshi
+     * Test of buscaCadena method, of class Cadenes.
+     */
+    @Ignore
+    @Test()
+    public void IgnoreTestBuscaCadena(){
+        System.out.println("IgnoreTestBuscaCadena");
+        System.out.println("Expected error -> RuntimeException");
+        String cadena1= "textex";
+        String cadena2 = "";
+        int num = cadena1.length()+10;
+        //Resultado
+        int expResult = 6;
+        int result =  Cadenes.buscaCadena(cadena1, cadena2, num);
+        assertEquals(expResult, result);
+    }
+    /**
+     * @group Profe
      * Test of buscaParaula method, of class Cadenes.
      */
     @Test
@@ -87,36 +251,123 @@ public class CadenesTest {
 //        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of buscaParaula20162017 method, of class Cadenes.
+     /**
+     * @group Mirokshi
+     * Test of buscaParaula method, of class Cadenes.
      */
     @Test
-    public void testBuscaParaula20162017() {
-        System.out.println("buscaParaula20162017");
-        String text = "";
-        String paraula = "";
-        int posicio = 0;
-        int expResult = 0;
-        int result = Cadenes.buscaParaula20162017(text, paraula, posicio);
+    public void testBuscaParaulaParametersNull() {
+        System.out.println("testBuscaParaulaParametersNull");
+        System.out.println("Si los dos string son null = -1");
+        String cadena1 = null;
+        String cadena2 = null;
+        int num = 0;
+        //Result
+        int expResult = -1;
+        int result = Cadenes.buscaParaula(cadena1, cadena2, num);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+    }
+    
+    /**
+     * @group Mirokshi
+     * Test of buscaParaula method, of class Cadenes.
+     */
+    @Test
+    public void testBuscaParaulaOneParameterNull() {
+        System.out.println("testBuscaParaulaOneParameterNull");
+        System.out.println("Si un string es null = -1");
+        String cadena1 = null;
+        String cadena2 = "";
+        int num = 0;
+        //Result
+        int expResult = -1;
+        int result = Cadenes.buscaParaula(cadena1, cadena2, num);
+        assertEquals(expResult, result);
+    }
+
+     /**
+     * @group Mirokshi
+     * Test of buscaParaula method, of class Cadenes.
+     */
+    @Test
+    public void testBuscaParaulaNumberNeghative() {
+        System.out.println("testBuscaParaulaNumberNeghative");
+        System.out.println("Si el numero es negativo = 0");
+        String cadena1 = null;
+        String cadena2 = "";
+        int num = 0;
+        //Result
+        int expResult = -1;
+        int result = Cadenes.buscaParaula(cadena1, cadena2, num);
+        assertEquals(expResult, result);
     }
 
     /**
-     * Test of subcadena method, of class Cadenes.
+     * @group Mirokshi
+     * Test of buscaParaula method, of class Cadenes.
      */
     @Test
-    public void testSubcadena() {
-        System.out.println("subcadena");
-        String cadena = "";
-        int primer = 0;
-        int segon = 0;
-        String expResult = "";
-        String result = Cadenes.subcadena(cadena, primer, segon);
+    public void testBuscaParaulaSecondParameterEmpty() {
+        System.out.println("testBuscaParaulaSecondParameterEmpty");
+        System.out.println("Si el segundo string es vacio retornará la longitud menor entre la primera cadena y "
+                + "el numero");
+        String cadena1 = "la lova lava la lana";
+        String cadena2 = "";
+        int num = 2;
+        //Result
+        int expResult = 2;
+        int result = Cadenes.buscaParaula(cadena1, cadena2, num);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+    }
+
+    /**
+     * @group Mirokshi
+     * Test of buscaParaula method, of class Cadenes.
+     */
+    @Test
+    public void testBuscaParaulaNumberHigher() {
+        System.out.println("testBuscaParaulaNumberHigher");
+        System.out.println("Si el numero es mayor que la longitud que el primer string  = -1");
+        String cadena1 = "la lova lava la lana";
+        String cadena2 = "la";
+        //Result
+        int expResult = -1;
+        int result = Cadenes.buscaParaula(cadena1, cadena2, cadena1.length()+5);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * @group Mirokshi
+     * Test of buscaParaula method, of class Cadenes.
+     */
+    @Test
+    public void testBuscaParaulaOK() {
+        System.out.println("testBuscaParaulaOK");
+        System.out.println("Prueba correcta del metodo");
+        String cadena1 = "la lova lava la lana";
+        String cadena2 = "la";
+        int num = 1;
+        //Result
+        int expResult = 13;
+        int result = Cadenes.buscaParaula(cadena1, cadena2, num);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * @group Mirokshi
+     * Test of buscaParaula method, of class Cadenes.
+     */
+    @Test(timeout=500)
+    public void testBuscaParaulaWithTimeout() {
+        System.out.println("testBuscaParaulaWithTimeout");
+        System.out.println("Timeout =  500 ms");
+        String cadena1 = "la lova lava la lana";
+        String cadena2 = "la";
+        int num = 1;
+        //Result
+        int expResult = 13;
+        int result = Cadenes.buscaParaula(cadena1, cadena2, num);
+        assertEquals(expResult, result);
     }
     
 }

@@ -1,0 +1,17 @@
+db.users.update({"extra.community_name":"ATHELATIC"},{
+     $currentDate : {"date_of_join":true}
+})
+//6
+db.users.update({"user_id":"user6"},{
+    $set : {"user_id":"user7"}, "edat":"18"
+})
+//7
+db.users.update({"user_id":"user7"},{
+    $rename : {"edat" : "age"}
+})
+//8
+db.users.updateMany({},{$unset : {"password":""}})
+//9
+db.users.updateMany({},{
+    $min : {"age":"25"}
+})

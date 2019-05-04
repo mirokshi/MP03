@@ -28,37 +28,10 @@ public class NumerosTest {
     public static void tearDownClass() {
     }
 
-    /**
-     * Test of vectorDigits method, of class Numeros.
-     */
-    @Ignore
-    @Test
-    public void testVectorDigits() {
-        System.out.println("vectorDigits");
-        int enter = 0;
-        int[] expResult = null;
-        int[] result = Numeros.vectorDigits(enter);
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+  
 
     /**
-     * Test of numVector method, of class Numeros.
-     */
-    @Ignore
-    @Test
-    public void testNumVector() {
-        System.out.println("numVector");
-        int[] num = null;
-        int expResult = 0;
-        int result = Numeros.numVector(num);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
+     * @group  profe
      * Test of esPrimer method, of class Numeros.
      */
     @Ignore
@@ -74,6 +47,43 @@ public class NumerosTest {
     }
 
     /**
+     * @group  mirokshi
+     * Test of esPrimer method, of class Numeros.
+     */
+    
+    @Test
+    public void testEsPrimerNumberIcorrect() {
+        System.out.println("testEsPrimerNumberIcorrect");
+        System.out.println("Si el numero es igual a 1 o menor = false");
+        int num = 1;
+        int num2 =-2;
+        boolean result = Numeros.esPrimer(num);
+      
+        assertFalse(result);
+        assertFalse(Numeros.esPrimer(num2));
+        
+    }
+
+    /**
+     * @group  mirokshi
+     * Test of esPrimer method, of class Numeros.
+     */
+    
+    @Test
+    public void testEsPrimerNumberCorrect() {
+        System.out.println("testEsPrimerReturnFalseBecauseNumberIcorect");
+        System.out.println("Prueba correcta del metodo");
+        int num = 3;
+        int num2 =11;
+        boolean result = Numeros.esPrimer(num);
+      
+        assertTrue(result);
+        assertTrue(Numeros.esPrimer(num2));
+        assertTrue(Numeros.esPrimer(7));
+        
+    }    
+    
+    /**
      * Test of longitudNumero method, of class Numeros.
      */
     @Ignore
@@ -87,36 +97,7 @@ public class NumerosTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of revesNumerov1 method, of class Numeros.
-     */
-    @Ignore
-    @Test
-    public void testRevesNumerov1() {
-        System.out.println("revesNumerov1");
-        int numero = 0;
-        int expResult = 0;
-        int result = Numeros.revesNumerov1(numero);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of revesNumerov2 method, of class Numeros.
-     */
-    @Ignore
-    @Test
-    public void testRevesNumerov2() {
-        System.out.println("revesNumerov2");
-        int numero = 0;
-        int expResult = 0;
-        int result = Numeros.revesNumerov2(numero);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   
 
     /**
      * Test of descFact method, of class Numeros.
@@ -130,5 +111,32 @@ public class NumerosTest {
         assertArrayEquals(new int[]{1,2,2,3,0,0,0,0,0,0,0,0}, Numeros.descFact(12));
         assertArrayEquals(new int[]{-1,2,2,3,0,0,0,0,0,0,0,0}, Numeros.descFact(-12));
     }
+
+    /**
+     * Test of numeroCapicua method, of class Numeros
+     */
+    @Test
+    public void testNumeroCapicua(){
+        System.out.println("testNumeroCapicua");
+        int num= 232;
+        int num2 = 1234;
+        
+        assertTrue(Numeros.numeroCapicua(num));
+        assertFalse(Numeros.numeroCapicua(num2));
+        
+    }
     
+    /**
+     * Test of numeroCapicua method, of class Numeros
+     */
+    @Test(expected=RuntimeException.class)
+    public void testNumeroCapicuaException(){
+        System.out.println("testNumeroCapicua");
+        double num= 232;
+        int num2 = 1234;
+        
+        assertTrue(Numeros.numeroCapicua(num));
+        assertFalse(Numeros.numeroCapicua(num2));
+        
+    }
 }

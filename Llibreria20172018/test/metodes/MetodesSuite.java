@@ -5,14 +5,16 @@
  */
 package metodes;
 
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 /**
  *
- * @author profe
+ * @author mirokshi
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({metodes.CadenesTest.class, metodes.NumerosTest.class})
@@ -24,6 +26,14 @@ public class MetodesSuite {
 
     @AfterClass
     public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
     }
     
 }

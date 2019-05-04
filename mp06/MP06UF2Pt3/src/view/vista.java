@@ -4,6 +4,7 @@ import controller.Controlador;
 import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
 import javax.swing.JOptionPane;
 
 /**
@@ -91,7 +92,10 @@ public final class vista extends javax.swing.JFrame {
         fieldIdProducto.setText("");
         fieldNombreProducto.setText("");
         fieldPrecioProducto.setText("");
+        
     }
+
+
     
         private void insertarAlmacen() {
         try {
@@ -490,6 +494,7 @@ public final class vista extends javax.swing.JFrame {
 
     private void cancelarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarProductoActionPerformed
         this.cancelarProducto();
+        System.exit(0);
     }//GEN-LAST:event_cancelarProductoActionPerformed
 
     private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
@@ -507,6 +512,7 @@ public final class vista extends javax.swing.JFrame {
 
     private void cancelarAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarAlmacenActionPerformed
         this.cancelarAlmacen();
+        System.exit(0);
     }//GEN-LAST:event_cancelarAlmacenActionPerformed
 
     private void modificarAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarAlmacenActionPerformed

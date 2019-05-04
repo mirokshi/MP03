@@ -38,6 +38,7 @@ public class MP06UF4Pt3{
          try {
             model.setDatabase(i+bd+f);
         } catch (PropertyVetoException e) {
+            System.out.println("\nNo se ha permitido el cambio\n");
         }
          
          try {
