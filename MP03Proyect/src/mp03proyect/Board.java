@@ -16,9 +16,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import javax.swing.Timer;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -26,6 +33,9 @@ import javax.swing.JPanel;
  */
 public class Board extends JPanel implements ActionListener {
 
+    JButton buttonStart = new JButton("Start");
+    JTextField inputName = new JTextField();
+    static Puntuaciones p = new Puntuaciones();
     private final int B_WIDTH = 300;
     private final int B_HEIGHT = 300;
     private final int DOT_SIZE = 10;
@@ -44,6 +54,7 @@ public class Board extends JPanel implements ActionListener {
     private boolean rightDirection = true;
     private boolean upDirection = false;
     private boolean downDirection = false;
+    private boolean start = false;
     private boolean inGame = true;
 
     private Timer timer;
@@ -56,6 +67,24 @@ public class Board extends JPanel implements ActionListener {
         initBoard();
     }
     
+    private void startGame(Graphics g){
+        String msg = "Java Game Snake";
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics metr = getFontMetrics(small);
+        
+        g.setColor(Color.white);
+        g.setFont(small);
+        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+        
+        //Lsitenr button
+        buttonStart.addActionListener(this);
+      
+        add(buttonStart);
+        add(inputName);
+    }
+    
+    
+    
     private void initBoard() {
 
         addKeyListener(new TAdapter());
@@ -65,6 +94,7 @@ public class Board extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
         loadImages();
         initGame();
+            
     }
 
     private void loadImages() {
@@ -81,7 +111,7 @@ public class Board extends JPanel implements ActionListener {
 
     private void initGame() {
 
-        dots = 3;
+        dots = 2;
 
         for (int z = 0; z < dots; z++) {
             x[z] = 50 - z * 10;
@@ -97,16 +127,24 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if (start == false) {
+        startGame(g);
+        
+        }else{
+        buttonStart.setVisible(false);
+        inputName.setVisible(false);
+        doDrawing(g); 
+        }
+        
 
-        doDrawing(g);
     }
     
     private void doDrawing(Graphics g) {
-        
+
         if (inGame) {
 
             g.drawImage(apple, apple_x, apple_y, this);
-
+             paintScore(g);
             for (int z = 0; z < dots; z++) {
                 if (z == 0) {
                     g.drawImage(head, x[z], y[z], this);
@@ -118,9 +156,20 @@ public class Board extends JPanel implements ActionListener {
             Toolkit.getDefaultToolkit().sync();
 
         } else {
-
             gameOver(g);
+            savedScore();
         }        
+    }
+    
+        
+    private void paintScore(Graphics g){
+        
+        String scr="Score: "+p.getScorePlayer();
+        Font small = new Font("Helveltica", Font.BOLD,14);
+        
+        g.setColor(Color.red);
+        g.setFont(small);
+        g.drawString(scr,B_WIDTH-95, B_HEIGHT-10);
     }
 
     private void gameOver(Graphics g) {
@@ -138,7 +187,9 @@ public class Board extends JPanel implements ActionListener {
 
         if ((x[0] == apple_x) && (y[0] == apple_y)) {
 
+            //score
             dots++;
+            p.setScorePlayer(dots);
             locateApple();
         }
     }
@@ -208,7 +259,11 @@ public class Board extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == buttonStart) {
+            start = true;
+            System.out.println("Start game!!!");
+        }
+        
         if (inGame) {
 
             checkApple();
@@ -219,6 +274,7 @@ public class Board extends JPanel implements ActionListener {
         repaint();
     }
 
+    //
     private class TAdapter extends KeyAdapter {
 
         @Override
@@ -251,4 +307,42 @@ public class Board extends JPanel implements ActionListener {
             }
         }
     }
+    
+    public static void savedScore(){
+        
+        ObjectOutputStream out = null;
+        try {
+            File f = new File("scores.dat");
+            if (f.exists()) {
+                out =  new AppendingObjectOutputStream(new FileOutputStream(f,true));
+            }else{
+                out = new ObjectOutputStream(new FileOutputStream(f,true));
+            }
+            
+           out.writeObject(p);
+            System.out.println(p);
+        } catch (IOException e) {
+            System.out.println(e);
+            System.out.println("Error al tratar el archivo");
+        }finally{
+            if (out!=null) try{
+                out.close();
+            }catch(IOException e){
+                System.out.println(e);
+                System.out.println("Error al cerrar el archivo");
+            }
+        }
+
+    }
+     
+    static class AppendingObjectOutputStream extends ObjectOutputStream {
+    public AppendingObjectOutputStream(OutputStream out) throws IOException {
+        super(out);
+    }
+    @Override
+    protected void writeStreamHeader() throws IOException {
+        reset();
+    }
+}
+
 }
