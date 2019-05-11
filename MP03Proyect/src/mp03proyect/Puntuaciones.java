@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Puntuaciones implements Serializable{
  
-    private String namePlayer = "Mirokshi";
+    private String namePlayer;
     private int scorePlayer;
 
     public String getNamePlayer() {
@@ -34,7 +34,7 @@ public class Puntuaciones implements Serializable{
 
     @Override
     public String toString() {
-        return "Puntuaciones{" + "namePlayer=" + namePlayer + ", scorePlayer=" + scorePlayer + '}';
+        return  "Jugador: " + namePlayer + " puntuacion: " + scorePlayer;
     }
     
     

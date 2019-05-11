@@ -16,14 +16,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -34,10 +40,13 @@ import javax.swing.JTextField;
 public class Board extends JPanel implements ActionListener {
 
     JButton buttonStart = new JButton("Start");
-    JTextField inputName = new JTextField();
+    JTextField inputName = new JTextField(10);
+    JLabel labelName = new JLabel("Jugador :");
+    static File f = new File("scores.dat");
     static Puntuaciones p = new Puntuaciones();
-    private final int B_WIDTH = 300;
-    private final int B_HEIGHT = 300;
+    static int score;
+    private final int B_WIDTH = 500;
+    private final int B_HEIGHT = 500;
     private final int DOT_SIZE = 10;
     private final int ALL_DOTS = 900;
     private final int RAND_POS = 29;
@@ -63,28 +72,30 @@ public class Board extends JPanel implements ActionListener {
     private Image head;
 
     public Board() {
-        
+
         initBoard();
     }
-    
-    private void startGame(Graphics g){
+
+    private void startGame(Graphics g) {
         String msg = "Java Game Snake";
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics metr = getFontMetrics(small);
-        
+
         g.setColor(Color.white);
         g.setFont(small);
-        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
-        
+        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, (B_HEIGHT / 2)-60);
+
+        inputName.setLocation(250,( B_HEIGHT/2));
+        labelName.setForeground(Color.white);
+        labelName.setLocation(170, ( B_HEIGHT/2));
+        buttonStart.setLocation(217,(B_HEIGHT/2)+60);
         //Lsitenr button
         buttonStart.addActionListener(this);
-      
         add(buttonStart);
         add(inputName);
+        add(labelName);
     }
-    
-    
-    
+
     private void initBoard() {
 
         addKeyListener(new TAdapter());
@@ -94,7 +105,7 @@ public class Board extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
         loadImages();
         initGame();
-            
+
     }
 
     private void loadImages() {
@@ -117,7 +128,7 @@ public class Board extends JPanel implements ActionListener {
             x[z] = 50 - z * 10;
             y[z] = 50;
         }
-        
+
         locateApple();
 
         timer = new Timer(DELAY, this);
@@ -128,23 +139,23 @@ public class Board extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (start == false) {
-        startGame(g);
-        
-        }else{
-        buttonStart.setVisible(false);
-        inputName.setVisible(false);
-        doDrawing(g); 
+            timer.stop();
+            startGame(g);
+        } else {
+            timer.start();
+            buttonStart.setVisible(false);
+            inputName.setVisible(false);
+            labelName.setVisible(false);
+            doDrawing(g);
         }
-        
 
     }
-    
+
     private void doDrawing(Graphics g) {
 
         if (inGame) {
-
             g.drawImage(apple, apple_x, apple_y, this);
-             paintScore(g);
+            paintScoreinGame(g);
             for (int z = 0; z < dots; z++) {
                 if (z == 0) {
                     g.drawImage(head, x[z], y[z], this);
@@ -156,24 +167,26 @@ public class Board extends JPanel implements ActionListener {
             Toolkit.getDefaultToolkit().sync();
 
         } else {
-            gameOver(g);
+//            gameOver(g);
             savedScore();
-        }        
-    }
-    
-        
-    private void paintScore(Graphics g){
-        
-        String scr="Score: "+p.getScorePlayer();
-        Font small = new Font("Helveltica", Font.BOLD,14);
-        
-        g.setColor(Color.red);
-        g.setFont(small);
-        g.drawString(scr,B_WIDTH-95, B_HEIGHT-10);
+            readScore(g);
+        }
     }
 
+    private void paintScoreinGame(Graphics g) {
+
+        String scr = "Score: " + p.getScorePlayer();
+        Font small = new Font("Helveltica", Font.BOLD, 14);
+
+        g.setColor(Color.red);
+        g.setFont(small);
+        g.drawString(scr, B_WIDTH - 95, B_HEIGHT - 10);
+    }
+
+
+    
     private void gameOver(Graphics g) {
-        
+
         String msg = "Game Over";
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics metr = getFontMetrics(small);
@@ -181,15 +194,16 @@ public class Board extends JPanel implements ActionListener {
         g.setColor(Color.white);
         g.setFont(small);
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+        
     }
 
     private void checkApple() {
 
         if ((x[0] == apple_x) && (y[0] == apple_y)) {
 
-            //score
+            score++;
             dots++;
-            p.setScorePlayer(dots);
+            p.setScorePlayer(score);
             locateApple();
         }
     }
@@ -242,7 +256,7 @@ public class Board extends JPanel implements ActionListener {
         if (x[0] < 0) {
             inGame = false;
         }
-        
+
         if (!inGame) {
             timer.stop();
         }
@@ -262,10 +276,10 @@ public class Board extends JPanel implements ActionListener {
         if (e.getSource() == buttonStart) {
             start = true;
             System.out.println("Start game!!!");
+            p.setNamePlayer(inputName.getText());
         }
-        
-        if (inGame) {
 
+        if (inGame) {
             checkApple();
             checkCollision();
             move();
@@ -307,42 +321,80 @@ public class Board extends JPanel implements ActionListener {
             }
         }
     }
-    
-    public static void savedScore(){
-        
+
+    private static void savedScore() {
+
         ObjectOutputStream out = null;
         try {
-            File f = new File("scores.dat");
             if (f.exists()) {
-                out =  new AppendingObjectOutputStream(new FileOutputStream(f,true));
-            }else{
-                out = new ObjectOutputStream(new FileOutputStream(f,true));
+                out = new AppendingObjectOutputStream(new FileOutputStream(f, true));
+            } else {
+                out = new ObjectOutputStream(new FileOutputStream(f, true));
             }
-            
-           out.writeObject(p);
-            System.out.println(p);
+
+            out.writeObject(p);
+//            System.out.println(p);
         } catch (IOException e) {
             System.out.println(e);
             System.out.println("Error al tratar el archivo");
-        }finally{
-            if (out!=null) try{
-                out.close();
-            }catch(IOException e){
-                System.out.println(e);
-                System.out.println("Error al cerrar el archivo");
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    System.out.println(e);
+                    System.out.println("Error al cerrar el archivo");
+                }
             }
         }
 
     }
-     
+
+    private void readScore(Graphics g) {
+        ObjectInputStream in = null;
+        Puntuaciones puntuaciones = null;
+        try {
+            in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+        } catch (IOException ex) {
+            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            while (true) {
+                puntuaciones = (Puntuaciones) in.readObject();
+                String msg = puntuaciones.toString();
+                Font small = new Font("Helvetica", Font.BOLD, 14);
+                FontMetrics metr = getFontMetrics(small);
+                g.setColor(Color.white);
+                g.setFont(small);
+                g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+
+                
+                System.out.println(puntuaciones);
+            }
+        } catch (ClassNotFoundException | IOException e) {
+            System.out.println(e);
+            
+        }
+        if (in != null) {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
     static class AppendingObjectOutputStream extends ObjectOutputStream {
-    public AppendingObjectOutputStream(OutputStream out) throws IOException {
-        super(out);
+
+        public AppendingObjectOutputStream(OutputStream out) throws IOException {
+            super(out);
+        }
+
+        @Override
+        protected void writeStreamHeader() throws IOException {
+            reset();
+        }
     }
-    @Override
-    protected void writeStreamHeader() throws IOException {
-        reset();
-    }
-}
 
 }
