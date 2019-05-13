@@ -34,7 +34,8 @@ public class Puntuaciones implements Serializable{
 
     @Override
     public String toString() {
-        return  "Jugador: " + namePlayer + " puntuacion: " + scorePlayer;
+        return "Jugador: " + namePlayer + ", puntuacion: " + scorePlayer;
+        
     }
     
     

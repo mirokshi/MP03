@@ -63,6 +63,7 @@ public class Board extends JPanel implements ActionListener {
     private boolean rightDirection = true;
     private boolean upDirection = false;
     private boolean downDirection = false;
+    
     private boolean start = false;
     private boolean inGame = true;
 
@@ -83,17 +84,27 @@ public class Board extends JPanel implements ActionListener {
 
         g.setColor(Color.white);
         g.setFont(small);
-        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, (B_HEIGHT / 2)-60);
+        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, (B_HEIGHT / 2) - 60);
 
-        inputName.setLocation(250,( B_HEIGHT/2));
+        inputName.setLocation(250, (B_HEIGHT / 2));
         labelName.setForeground(Color.white);
-        labelName.setLocation(170, ( B_HEIGHT/2));
-        buttonStart.setLocation(217,(B_HEIGHT/2)+60);
+        labelName.setLocation(170, (B_HEIGHT / 2));
+        buttonStart.setLocation(217, (B_HEIGHT / 2) + 60);
         //Lsitenr button
         buttonStart.addActionListener(this);
+        
+        
         add(buttonStart);
         add(inputName);
         add(labelName);
+        
+        inputName.addKeyListener(new KeyAdapter(){
+            public void keyPressed(KeyEvent e){
+                if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+                    buttonStart.doClick();
+                }
+            }
+        });
     }
 
     private void initBoard() {
@@ -138,6 +149,7 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
         if (start == false) {
             timer.stop();
             startGame(g);
@@ -183,19 +195,6 @@ public class Board extends JPanel implements ActionListener {
         g.drawString(scr, B_WIDTH - 95, B_HEIGHT - 10);
     }
 
-
-    
-    private void gameOver(Graphics g) {
-
-        String msg = "Game Over";
-        Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics metr = getFontMetrics(small);
-
-        g.setColor(Color.white);
-        g.setFont(small);
-        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
-        
-    }
 
     private void checkApple() {
 
@@ -319,6 +318,7 @@ public class Board extends JPanel implements ActionListener {
                 rightDirection = false;
                 leftDirection = false;
             }
+
         }
     }
 
@@ -358,24 +358,30 @@ public class Board extends JPanel implements ActionListener {
         } catch (IOException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        try {
-            while (true) {
-                puntuaciones = (Puntuaciones) in.readObject();
-                String msg = puntuaciones.toString();
-                Font small = new Font("Helvetica", Font.BOLD, 14);
-                FontMetrics metr = getFontMetrics(small);
-                g.setColor(Color.white);
-                g.setFont(small);
-                g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
 
-                
-                System.out.println(puntuaciones);
+        
+        int i=0;
+        while (true) {
+            try {
+                puntuaciones = (Puntuaciones) in.readObject();
+            } catch (ClassNotFoundException | IOException e) {
+                System.out.println(e);
+                break;
+
             }
-        } catch (ClassNotFoundException | IOException e) {
-            System.out.println(e);
-            
+            String msg = puntuaciones.toString();
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+
+        g.setColor(Color.pink);
+        g.setFont(small);
+
+        g.drawString(msg, B_WIDTH-370, i+ B_HEIGHT-450);
+        System.out.println(msg);
+        i+=20;
+            //g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
         }
+
+            
         if (in != null) {
             try {
                 in.close();
@@ -383,6 +389,7 @@ public class Board extends JPanel implements ActionListener {
                 Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        timer.stop();
     }
 
     static class AppendingObjectOutputStream extends ObjectOutputStream {
