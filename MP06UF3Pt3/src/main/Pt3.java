@@ -6,7 +6,6 @@
 package main;
 
 import controller.controlador;
-import view.vista;
 
 
 /**

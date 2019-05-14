@@ -8,6 +8,8 @@ package controller;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoIterable;
+import java.util.ArrayList;
 import org.bson.Document;
 import view.vista;
 
@@ -24,12 +26,15 @@ public class controlador {
     public controlador(){  
     }
     
-    public void listBd(){
+    public String[] listBd(){
         mongoClient = new MongoClient();
-     for(String s:mongoClient.listDatabaseNames()){        
-            System.out.println(s); 
+     for( String s:mongoClient.listDatabaseNames()){
+         System.out.println(s);
+//         return new String[];
+     
      }
-
+     return new String[]{"ss"};
+     
     }
     
     public void connectBd(String bd){

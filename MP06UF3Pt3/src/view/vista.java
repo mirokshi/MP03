@@ -5,12 +5,16 @@
  */
 package view;
 
+import controller.controlador;
+
 
 /**
  *
  * @author mirokshi
  */
 public class vista extends javax.swing.JFrame {
+    
+//    controlador c = new controlador();
     /**
      * Creates new form vista
      */
@@ -358,6 +362,7 @@ public class vista extends javax.swing.JFrame {
 
     public void setComboboxBd(javax.swing.JComboBox<String> comboboxBd) {
         this.comboboxBd = comboboxBd;
+        
     }
 
     public javax.swing.JComboBox<String> getComboboxDocument() {
