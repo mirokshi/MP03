@@ -6,6 +6,7 @@
 package view;
 
 import controller.controlador;
+import javax.swing.DefaultComboBoxModel;
 
 
 /**
@@ -14,12 +15,22 @@ import controller.controlador;
  */
 public class vista extends javax.swing.JFrame {
     
-//    controlador c = new controlador();
+   controlador c;
     /**
      * Creates new form vista
      */
     public vista() {
         initComponents();
+        setLocationRelativeTo(null);
+        this.c = new controlador();
+        listbasenames();
+        
+    }
+    
+    public void listbasenames(){
+        DefaultComboBoxModel model = new DefaultComboBoxModel(this.c.listBd());
+        this.comboboxBd.setModel(model);
+        
     }
 
     /**
@@ -361,8 +372,7 @@ public class vista extends javax.swing.JFrame {
     }
 
     public void setComboboxBd(javax.swing.JComboBox<String> comboboxBd) {
-        this.comboboxBd = comboboxBd;
-        
+        this.comboboxBd = comboboxBd;        
     }
 
     public javax.swing.JComboBox<String> getComboboxDocument() {

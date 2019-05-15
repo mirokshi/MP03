@@ -5,8 +5,7 @@
  */
 package main;
 
-import controller.controlador;
-
+import view.vista;
 
 /**
  *
@@ -18,13 +17,8 @@ public class Pt3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        controlador c = new controlador();
-        
-//         vista v = new vista();
-         c.listBd();
-//        c.connectDB("consultes");
-//        c.connectCollection("users");
-
+         new vista().setVisible(true);
+         
     }
     
 }

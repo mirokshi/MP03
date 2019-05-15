@@ -13,32 +13,47 @@ import java.util.ArrayList;
 import org.bson.Document;
 import view.vista;
 
+
 /**
  *
  * @author mirokshi
  */
 public class controlador {
-    vista v = new vista();
+//    vista v = new vista();
     MongoClient mongoClient;
     MongoDatabase database;
     MongoCollection<Document> col;
     
-    public controlador(){  
-    }
     
-    public String[] listBd(){
+    public controlador(){
+        
+    }
+
+     public String[] listBd(){
         mongoClient = new MongoClient();
-     for( String s:mongoClient.listDatabaseNames()){
-         System.out.println(s);
-//         return new String[];
-     
-     }
-     return new String[]{"ss"};
+        MongoIterable<String> itdatabase = mongoClient.listDatabaseNames();
+        ArrayList<String> listDatabase = new ArrayList<String>();
+        for( String s:itdatabase){
+            listDatabase.add(s);
+        }
+        
+        String  str[] = new String[listDatabase.size()];
+        Object[] objArr =  listDatabase.toArray();
+        
+        int i = 0;
+        
+        for (Object obj: objArr) {
+            str[i++] = (String)obj;
+            
+        }
+        return str;
      
     }
-    
-    public void connectBd(String bd){
+     
+       
+    public String[] connectBd(String bd){
          database = mongoClient.getDatabase(bd);
+
         for(String s2:database.listCollectionNames()){
             System.out.println(s2);
         }
@@ -52,7 +67,13 @@ public class controlador {
         } 
         
     }
-    
 
+    public void insertDocument(String collection){
+        
+    }
+    
+    public void deleteDocumuent(String collection){
+        
+    }
     
 }
