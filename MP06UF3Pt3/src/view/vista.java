@@ -6,7 +6,9 @@
 package view;
 
 import controller.controlador;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JList;
+import javax.swing.JTextArea;
 
 
 /**
@@ -22,16 +24,9 @@ public class vista extends javax.swing.JFrame {
     public vista() {
         initComponents();
         setLocationRelativeTo(null);
-        this.c = new controlador();
-        listbasenames();
         
     }
     
-    public void listbasenames(){
-        DefaultComboBoxModel model = new DefaultComboBoxModel(this.c.listBd());
-        this.comboboxBd.setModel(model);
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,18 +50,16 @@ public class vista extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        comboboxDocument = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        JListdocument = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        keysCombo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,16 +130,12 @@ public class vista extends javax.swing.JFrame {
 
         jLabel4.setText("Colecciones");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        JListdocument.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList1);
-
-        comboboxDocument.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel2.setText("Document");
+        jScrollPane2.setViewportView(JListdocument);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,19 +143,18 @@ public class vista extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(comboxColeccion, 0, 102, Short.MAX_VALUE)
-                            .addComponent(comboboxBd, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboboxDocument, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(comboxColeccion, 0, 102, Short.MAX_VALUE)
+                    .addComponent(comboboxBd, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 19, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,11 +167,7 @@ public class vista extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboxColeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboboxDocument, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(48, 48, 48)
+                .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -191,8 +175,6 @@ public class vista extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("CRUD Documento"));
 
         jLabel5.setText("Llaves");
-
-        jTextField1.setText("jTextField1");
 
         jLabel6.setText("Nueva llave :");
 
@@ -206,6 +188,8 @@ public class vista extends javax.swing.JFrame {
 
         jButton3.setText("BORRAR");
 
+        keysCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -218,8 +202,8 @@ public class vista extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
+                        .addComponent(keysCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,9 +224,9 @@ public class vista extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(keysCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jButton2)))
@@ -328,6 +312,7 @@ public class vista extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -340,29 +325,27 @@ public class vista extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JList<String> JListdocument;
     public javax.swing.JComboBox<String> comboboxBd;
-    private javax.swing.JComboBox<String> comboboxDocument;
-    private javax.swing.JComboBox<String> comboxColeccion;
+    public javax.swing.JComboBox<String> comboxColeccion;
     private javax.swing.JButton insertColeccion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    public javax.swing.JComboBox<String> keysCombo;
     private javax.swing.JButton modificarColeccion;
     private javax.swing.JTextArea textAreaDocuments;
     // End of variables declaration//GEN-END:variables
@@ -375,13 +358,7 @@ public class vista extends javax.swing.JFrame {
         this.comboboxBd = comboboxBd;        
     }
 
-    public javax.swing.JComboBox<String> getComboboxDocument() {
-        return comboboxDocument;
-    }
 
-    public void setComboboxDocument(javax.swing.JComboBox<String> comboboxDocument) {
-        this.comboboxDocument = comboboxDocument;
-    }
 
     public javax.swing.JComboBox<String> getComboxColeccion() {
         return comboxColeccion;
@@ -390,4 +367,29 @@ public class vista extends javax.swing.JFrame {
     public void setComboxColeccion(javax.swing.JComboBox<String> comboxColeccion) {
         this.comboxColeccion = comboxColeccion;
     }
+
+    public JList<String> getJListdocument() {
+        return JListdocument;
+    }
+
+    public void setJListdocument(JList<String> JListdocument) {
+        this.JListdocument = JListdocument;
+    }
+
+    public JComboBox<String> getKeysCombo() {
+        return keysCombo;
+    }
+
+    public void setKeysCombo(JComboBox<String> keysCombo) {
+        this.keysCombo = keysCombo;
+    }
+
+    public JTextArea getTextAreaDocuments() {
+        return textAreaDocuments;
+    }
+
+    public void setTextAreaDocuments(JTextArea textAreaDocuments) {
+        this.textAreaDocuments = textAreaDocuments;
+    }
+    
 }

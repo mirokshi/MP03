@@ -5,11 +5,20 @@
  */
 package controller;
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoIterable;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JTextArea;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import model.modelo;
 import org.bson.Document;
 import view.vista;
 
@@ -18,62 +27,79 @@ import view.vista;
  *
  * @author mirokshi
  */
-public class controlador {
-//    vista v = new vista();
-    MongoClient mongoClient;
-    MongoDatabase database;
-    MongoCollection<Document> col;
+public final class controlador {
+    vista v;
+    modelo m;
     
     
-    public controlador(){
-        
+    public controlador(vista v , modelo m){
+        this.v = v;
+        this.m = m;
+        this.v.setVisible(true);
+
+        listBd();
+        actions();
     }
 
-     public String[] listBd(){
-        mongoClient = new MongoClient();
-        MongoIterable<String> itdatabase = mongoClient.listDatabaseNames();
-        ArrayList<String> listDatabase = new ArrayList<String>();
-        for( String s:itdatabase){
-            listDatabase.add(s);
+    public void listBd(){
+        DefaultComboBoxModel model = new DefaultComboBoxModel(m.getBd());
+        v.comboboxBd.setModel(model);
+    }
+    
+    public void listCollection(ActionEvent evt){
+        String bd = v.comboboxBd.getSelectedItem().toString();
+        DefaultComboBoxModel model = new DefaultComboBoxModel(m.getCollection(bd));
+        v.comboxColeccion.setModel(model);
+         
+    }
+    
+    public void listDocuments(ActionEvent evt){
+        String document = v.comboxColeccion.getSelectedItem().toString();
+        DefaultListModel model = new DefaultListModel();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser jp = new JsonParser();
+        for (Document s : m.getDocument(document)) {
+            JsonElement je=jp.parse(s.toJson());
+            model.addElement(gson.toJson(je));
         }
+        v.JListdocument.setModel(model);
+    }
+    
+    public void listKeysDocument(ActionEvent evt){
+        DefaultComboBoxModel model = new DefaultComboBoxModel(m.getKeysDocument());
+        v.keysCombo.setModel(model);
+    }
+    
+    public void actions(){
         
-        String  str[] = new String[listDatabase.size()];
-        Object[] objArr =  listDatabase.toArray();
+        ActionListener al=(ActionEvent e) -> {
+            if (e.getSource().equals(v.getComboboxBd())) {
+                listCollection(e);
+                System.out.println("1 :"+ v.comboboxBd.getSelectedItem());   
+            }
+            if(e.getSource().equals(v.getComboxColeccion())){
+                listDocuments(e);
+                System.out.println("2 :"+v.comboxColeccion.getSelectedItem());
+            }
+            if(e.getSource().equals(v.getKeysCombo())){
+                listKeysDocument(e);
+                
+            }
+                    
+        };
         
-        int i = 0;
-        
-        for (Object obj: objArr) {
-            str[i++] = (String)obj;
+        v.JListdocument.addListSelectionListener((ListSelectionEvent e) -> {
+            JTextArea tA =  v.getTextAreaDocuments();
+            tA.setText(v.getJListdocument().getSelectedValue());
+            v.setTextAreaDocuments(tA);
+            System.out.println("3: "+ v.JListdocument.getSelectedValue());
             
-        }
-        return str;
-     
-    }
-     
-       
-    public String[] connectBd(String bd){
-         database = mongoClient.getDatabase(bd);
-
-        for(String s2:database.listCollectionNames()){
-            System.out.println(s2);
-        }
-    }
-  
-    public void connectCollection(String collection){
-         col=database.getCollection(collection);
-        for (Document cur : col.find()) {
-            System.out.println(cur.toJson());
-            
-        } 
+        });
         
+        v.comboboxBd.addActionListener(al);
+        v.comboxColeccion.addActionListener(al);   
     }
 
-    public void insertDocument(String collection){
-        
-    }
     
-    public void deleteDocumuent(String collection){
-        
     }
-    
-}
+
