@@ -11,7 +11,7 @@ package model;
  *
  * @author mirokshi
  */
-public class personal {
+public class person {
 
     private String name;
     private String surname;

@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
-import model.Staff;
+import model.person;
 import view.view;
 
 /**
@@ -18,28 +18,37 @@ import view.view;
  */
 public class controller {
     view v;
-    personal p;
+    person p;
     
-   public controller(view v,  Staff s){
+   public controller(view v,  person p){
        this.v = v;
-       this.p = s;
+       this.p = p;
        
    }
    
-   public writeFile(){
+   public void writeFile(){
               // pretty print
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         // Java objects to String
-        String json = gson.toJson(staff);
+        String json = gson.toJson(p);
 
         //System.out.println(json);
 
         // Java objects to File
-        try (FileWriter writer = new FileWriter("staff.json")) {
-            gson.toJson(staff, writer);
+        try (FileWriter writer = new FileWriter("persons.json")) {
+            gson.toJson(p, writer);
         } catch (IOException e) {
             System.out.println(e);
         }
+   }
+   
+   public person createPerson(){
+       p.setName("Mirokshi");
+       p.setSurname("Rojas");
+       p.setAge(20);
+       p.setPhone(656445154);       
+       return p;
+       
    }
 }
