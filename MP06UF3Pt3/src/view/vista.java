@@ -6,6 +6,7 @@
 package view;
 
 import controller.controlador;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JTextArea;
@@ -24,7 +25,8 @@ public class vista extends javax.swing.JFrame {
     public vista() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
+        this.JListdocument.setFixedCellWidth(250);
     }
     
 
@@ -39,10 +41,10 @@ public class vista extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        textAreaDocuments = new javax.swing.JTextArea();
-        insertColeccion = new javax.swing.JButton();
-        modificarColeccion = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        textAreaDocument = new javax.swing.JTextArea();
+        btnInsertCollection = new javax.swing.JButton();
+        btnUpdateCollection = new javax.swing.JButton();
+        btnDeleteCollection = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         comboboxBd = new javax.swing.JComboBox<>();
@@ -55,26 +57,27 @@ public class vista extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnInsertKey = new javax.swing.JButton();
+        btnDeleteKey = new javax.swing.JButton();
         keysCombo = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textAreaKey = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("CRUD Coleccion"));
         jPanel2.setToolTipText("");
 
-        textAreaDocuments.setColumns(20);
-        textAreaDocuments.setRows(5);
-        jScrollPane1.setViewportView(textAreaDocuments);
+        textAreaDocument.setColumns(20);
+        textAreaDocument.setRows(5);
+        jScrollPane1.setViewportView(textAreaDocument);
 
-        insertColeccion.setText("INSERTAR");
+        btnInsertCollection.setText("INSERTAR");
 
-        modificarColeccion.setText("MODIFICAR");
+        btnUpdateCollection.setText("MODIFICAR");
 
-        jButton1.setText("BORRAR");
+        btnDeleteCollection.setText("BORRAR");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -87,11 +90,11 @@ public class vista extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(modificarColeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(insertColeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnUpdateCollection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInsertCollection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnDeleteCollection)
                         .addGap(15, 15, 15))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -100,11 +103,11 @@ public class vista extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(insertColeccion)
+                .addComponent(btnInsertCollection)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(modificarColeccion)
+                .addComponent(btnUpdateCollection)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDeleteCollection, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
 
@@ -112,14 +115,12 @@ public class vista extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("BD & Colecciones"));
 
-        comboboxBd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboboxBd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboboxBdActionPerformed(evt);
             }
         });
 
-        comboxColeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboxColeccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboxColeccionActionPerformed(evt);
@@ -130,11 +131,6 @@ public class vista extends javax.swing.JFrame {
 
         jLabel4.setText("Colecciones");
 
-        JListdocument.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(JListdocument);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -150,7 +146,7 @@ public class vista extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(comboxColeccion, 0, 102, Short.MAX_VALUE)
                     .addComponent(comboboxBd, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 19, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
@@ -168,7 +164,7 @@ public class vista extends javax.swing.JFrame {
                     .addComponent(comboxColeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(36, 36, 36)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -178,17 +174,15 @@ public class vista extends javax.swing.JFrame {
 
         jLabel6.setText("Nueva llave :");
 
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
         jLabel7.setText("Valor");
 
-        jButton2.setText("AÑADIR / MODIFICAR");
+        btnInsertKey.setText("AÑADIR / MODIFICAR");
 
-        jButton3.setText("BORRAR");
+        btnDeleteKey.setText("BORRAR");
 
-        keysCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        textAreaKey.setColumns(20);
+        textAreaKey.setRows(5);
+        jScrollPane3.setViewportView(textAreaKey);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -207,13 +201,13 @@ public class vista extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+                        .addComponent(btnInsertKey)
                         .addGap(22, 22, 22))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDeleteKey)
                         .addGap(59, 59, 59))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -229,17 +223,17 @@ public class vista extends javax.swing.JFrame {
                             .addComponent(keysCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(jButton2)))
+                        .addComponent(btnInsertKey)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(btnDeleteKey, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -326,12 +320,13 @@ public class vista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JList<String> JListdocument;
+    public javax.swing.JButton btnDeleteCollection;
+    public javax.swing.JButton btnDeleteKey;
+    public javax.swing.JButton btnInsertCollection;
+    public javax.swing.JButton btnInsertKey;
+    public javax.swing.JButton btnUpdateCollection;
     public javax.swing.JComboBox<String> comboboxBd;
     public javax.swing.JComboBox<String> comboxColeccion;
-    private javax.swing.JButton insertColeccion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -343,11 +338,11 @@ public class vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     public javax.swing.JComboBox<String> keysCombo;
-    private javax.swing.JButton modificarColeccion;
-    private javax.swing.JTextArea textAreaDocuments;
+    private javax.swing.JTextArea textAreaDocument;
+    public javax.swing.JTextArea textAreaKey;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JComboBox<String> getComboboxBd() {
@@ -385,11 +380,68 @@ public class vista extends javax.swing.JFrame {
     }
 
     public JTextArea getTextAreaDocuments() {
-        return textAreaDocuments;
+        return textAreaDocument;
     }
 
     public void setTextAreaDocuments(JTextArea textAreaDocuments) {
-        this.textAreaDocuments = textAreaDocuments;
+        this.textAreaDocument = textAreaDocuments;
     }
+
+    public javax.swing.JTextArea getTextAreaKey() {
+        return textAreaKey;
+    }
+
+    public void setTextAreaKey(javax.swing.JTextArea textAreaKey) {
+        this.textAreaKey = textAreaKey;
+    }
+
+    public JButton getBtnBorrarCollection() {
+        return btnDeleteCollection;
+    }
+
+    public void setBtnBorrarCollection(JButton btnBorrarCollection) {
+        this.btnDeleteCollection = btnBorrarCollection;
+    }
+
+    public JButton getBtnInsertCollection() {
+        return btnInsertCollection;
+    }
+
+    public void setBtnInsertCollection(JButton btnInsertCollection) {
+        this.btnInsertCollection = btnInsertCollection;
+    }
+
+    public JButton getBtnUpdateCollection() {
+        return btnUpdateCollection;
+    }
+
+    public void setBtnUpdateCollection(JButton btnUpdateCollection) {
+        this.btnUpdateCollection = btnUpdateCollection;
+    }
+
+    public JButton getBtnDeleteCollection() {
+        return btnDeleteCollection;
+    }
+
+    public void setBtnDeleteCollection(JButton btnDeleteCollection) {
+        this.btnDeleteCollection = btnDeleteCollection;
+    }
+
+    public JButton getBtnDeleteKey() {
+        return btnDeleteKey;
+    }
+
+    public void setBtnDeleteKey(JButton btnDeleteKey) {
+        this.btnDeleteKey = btnDeleteKey;
+    }
+
+    public JButton getBtnInsertKey() {
+        return btnInsertKey;
+    }
+
+    public void setBtnInsertKey(JButton btnInsertKey) {
+        this.btnInsertKey = btnInsertKey;
+    }
+    
     
 }

@@ -77,39 +77,62 @@ public class modelo {
         return documents;
     }
 
-    public String[] getKeysDocument(){
-        Set<String> llista = document.keySet();
+    public String[] getKeysDocument(Document getDoc){
+        Set<String> llista = getDoc.keySet();
 
-        ArrayList<String> keys = new ArrayList<String>();
+        ArrayList<String> arrKeys = new ArrayList<String>();
 
         llista.forEach((s) -> {
-            keys.add(s);
+            arrKeys.add(s);
         });
         
-        String[] keysNoms = new String[keys.size()];
-        Object[] objArr = keys.toArray();
+        String[] keys = new String[arrKeys.size()];
+        Object[] objArr = arrKeys.toArray();
         
         int i = 0;
         
         for (Object obj : objArr) {
-            keysNoms[i++] = (String)obj;
+            keys[i++] = (String)obj;
         }
         
-        return keysNoms;
+        return keys;
         
     }
-    
-    public Collection<Object> getValuesDocument(){
-        Collection<Object> llistaValors=document.values();
-          return llistaValors;
+
+    public void insertDocument(String doc){
+        // Afegim un document a partir de la seua representació Json (podem rebre una //org.bson.json.JsonParseException)
+        try{
+        col.insertOne(Document.parse(doc));
+        }catch(org.bson.json.JsonParseException e){
+            System.out.println(e);
+}
+
     }
     
-    public void insertDocument(String collection){
-        
+    public void deleteDocumuent(String doc){
+        try {
+            col.deleteOne(Document.parse(doc));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
     
-    public void deleteDocumuent(String collection){
-        
+    public void updateDocument(Document doc,String newDoc){
+        try {
+            col.updateOne(doc,Document.parse(newDoc));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
+    
+    public void deleteKey(Document doc,String key){
+        try {
+            doc.remove(key);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
     
 }
+

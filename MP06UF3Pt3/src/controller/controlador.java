@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -36,6 +37,7 @@ public final class controlador {
         this.v = v;
         this.m = m;
         this.v.setVisible(true);
+        this.v.setResizable(false);
 
         listBd();
         actions();
@@ -65,41 +67,71 @@ public final class controlador {
         v.JListdocument.setModel(model);
     }
     
-    public void listKeysDocument(ActionEvent evt){
-        DefaultComboBoxModel model = new DefaultComboBoxModel(m.getKeysDocument());
+    public void listKeysDocument(ListSelectionEvent evt){
+        Document doc = Document.parse(v.getJListdocument().getSelectedValue());
+          DefaultComboBoxModel model = new DefaultComboBoxModel();
+           String[] keys = m.getKeysDocument(doc);
+        for (String key : keys) {
+            model.addElement(key);
+        }
         v.keysCombo.setModel(model);
     }
     
+    
+    public Object listValuesDocument(){
+        Document doc = Document.parse(v.getJListdocument().getSelectedValue());
+        return doc.get(v.getKeysCombo().getSelectedItem().toString());
+    }
+    
+    public void updateDocument(){
+        Document doc = Document.parse(v.getJListdocument().getSelectedValue());
+        m.updateDocument(doc, v.getTextAreaDocuments().getText());
+    }
+    
     public void actions(){
-        
         ActionListener al=(ActionEvent e) -> {
             if (e.getSource().equals(v.getComboboxBd())) {
                 listCollection(e);
-                System.out.println("1 :"+ v.comboboxBd.getSelectedItem());   
+                System.out.println("Combo1 :"+ v.comboboxBd.getSelectedItem());   
             }
             if(e.getSource().equals(v.getComboxColeccion())){
                 listDocuments(e);
-                System.out.println("2 :"+v.comboxColeccion.getSelectedItem());
+               System.out.println("Combo2 :"+v.comboxColeccion.getSelectedItem());
             }
             if(e.getSource().equals(v.getKeysCombo())){
-                listKeysDocument(e);
-                
+                System.out.println("Combo3 :"+v.keysCombo.getSelectedItem());
+                JTextArea ta = v.getTextAreaKey();
+                ta.setText(listValuesDocument().toString());
             }
-                    
+            if(e.getSource().equals(v.getBtnInsertCollection())){
+                System.out.println("Button1");
+                m.insertDocument(v.getTextAreaDocuments().getText());
+            }
+            if (e.getSource().equals(v.getBtnBorrarCollection())) {
+                System.out.println("Button2");
+                m.deleteDocumuent(v.getTextAreaDocuments().getText());
+            }
+            if (e.getSource().equals(v.getBtnUpdateCollection())) {
+                System.out.println("Button3");
+                updateDocument();
+            }
+            
         };
         
         v.JListdocument.addListSelectionListener((ListSelectionEvent e) -> {
             JTextArea tA =  v.getTextAreaDocuments();
             tA.setText(v.getJListdocument().getSelectedValue());
             v.setTextAreaDocuments(tA);
-            System.out.println("3: "+ v.JListdocument.getSelectedValue());
+            listKeysDocument(e);
             
         });
         
         v.comboboxBd.addActionListener(al);
-        v.comboxColeccion.addActionListener(al);   
+        v.comboxColeccion.addActionListener(al);
+        v.keysCombo.addActionListener(al);
+        v.btnInsertCollection.addActionListener(al);
+        v.btnDeleteCollection.addActionListener(al);
+        v.btnUpdateCollection.addActionListener(al);
     }
-
-    
-    }
+}
 
