@@ -6,7 +6,7 @@
 package view;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -54,13 +54,13 @@ public class View extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         modelName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        typeCombo = new javax.swing.JComboBox<>();
+        type = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
         modifyButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        sizeCombo = new javax.swing.JComboBox<>();
+        TAMAÑO = new javax.swing.JLabel();
+        tipo = new javax.swing.JTextField();
+        tamaño = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -116,14 +116,14 @@ public class View extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(127, 127, 127)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(283, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel4, "card2");
@@ -167,28 +167,20 @@ public class View extends javax.swing.JFrame {
                 .addGap(0, 169, Short.MAX_VALUE))
         );
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Entinguisher"));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Extintor"));
         jPanel6.setToolTipText("");
 
         modelName.setForeground(new java.awt.Color(51, 51, 51));
         modelName.setText("jTextField1");
 
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Model");
+        jLabel1.setText("MODELO");
 
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Type");
-
-        typeCombo.setForeground(new java.awt.Color(51, 51, 51));
-        typeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        typeCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                typeComboActionPerformed(evt);
-            }
-        });
+        type.setForeground(new java.awt.Color(51, 51, 51));
+        type.setText("TIPO");
 
         addButton.setForeground(new java.awt.Color(51, 51, 51));
-        addButton.setText("Add");
+        addButton.setText("INSERTAR");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
@@ -196,7 +188,7 @@ public class View extends javax.swing.JFrame {
         });
 
         modifyButton.setForeground(new java.awt.Color(51, 51, 51));
-        modifyButton.setText("Modify");
+        modifyButton.setText("MODIFICAR");
         modifyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modifyButtonActionPerformed(evt);
@@ -204,18 +196,14 @@ public class View extends javax.swing.JFrame {
         });
 
         removeButton.setForeground(new java.awt.Color(51, 51, 51));
-        removeButton.setText("Remove");
+        removeButton.setText("BORRAR");
 
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Size");
+        TAMAÑO.setForeground(new java.awt.Color(51, 51, 51));
+        TAMAÑO.setText("Size");
 
-        sizeCombo.setForeground(new java.awt.Color(51, 51, 51));
-        sizeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        sizeCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sizeComboActionPerformed(evt);
-            }
-        });
+        tipo.setText("jTextField1");
+
+        tamaño.setText("jTextField2");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -225,21 +213,21 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(modelName)
-                            .addComponent(typeCombo, 0, 150, Short.MAX_VALUE)
-                            .addComponent(sizeCombo, 0, 150, Short.MAX_VALUE)))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(addButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(modifyButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(removeButton)))
+                        .addComponent(removeButton))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(type)
+                            .addComponent(TAMAÑO))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(modelName, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addComponent(tipo)
+                            .addComponent(tamaño))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -249,15 +237,15 @@ public class View extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modelName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(33, 33, 33)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(type)
+                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(sizeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                    .addComponent(TAMAÑO)
+                    .addComponent(tamaño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(removeButton)
                     .addComponent(addButton)
@@ -321,10 +309,6 @@ public class View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void typeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_typeComboActionPerformed
-
     private void listButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_listButtonActionPerformed
@@ -340,10 +324,6 @@ public class View extends javax.swing.JFrame {
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modifyButtonActionPerformed
-
-    private void sizeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sizeComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sizeComboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -407,9 +387,6 @@ public class View extends javax.swing.JFrame {
         return jPanel5;
     }
 
-    public JComboBox<String> getSizeCombo() {
-        return sizeCombo;
-    }
 
     public JButton getAddButton() {
         return addButton;
@@ -419,13 +396,10 @@ public class View extends javax.swing.JFrame {
         return modelName;
     }
 
-    public JTable getEntinguisherTable() {
+    public JTable getExtinguisherTable() {
         return extinguisherTable;
     }
     
-    public JComboBox<String> getTypeCombo() {
-        return typeCombo;
-    }
 
     public JTable getExtinguisherTableList() {
         return extinguisherTableList;
@@ -445,23 +419,31 @@ public class View extends javax.swing.JFrame {
         return removeButton;
     }
 
+    public JTextField getTamaño() {
+        return tamaño;
+    }
+
+    public JTextField getTipo() {
+        return tipo;
+    }
+
+
     
     //Per posar els camps en blanc
     public void cleanFields(){
         modelName.setText("");
-        typeCombo.setSelectedIndex(0);
-        sizeCombo.setSelectedIndex(0);
+        tipo.setText("");
+        tamaño.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel TAMAÑO;
     private javax.swing.JButton addButton;
     private javax.swing.JButton crudButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JTable extinguisherTable;
     private javax.swing.JTable extinguisherTableList;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -475,8 +457,9 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTextField modelName;
     private javax.swing.JButton modifyButton;
     private javax.swing.JButton removeButton;
-    private javax.swing.JComboBox<String> sizeCombo;
-    private javax.swing.JComboBox<String> typeCombo;
+    private javax.swing.JTextField tamaño;
+    private javax.swing.JTextField tipo;
+    private javax.swing.JLabel type;
     // End of variables declaration//GEN-END:variables
 
     

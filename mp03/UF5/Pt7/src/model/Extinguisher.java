@@ -11,17 +11,14 @@ import java.io.Serializable;
  *
  * @author profe
  */
-public class Entinguisher implements Serializable{
+public class Extinguisher implements Serializable{
     
-    public enum Type { WATER, POWDER, CO2, SPECIAL};
-    public enum Size { SMALL, MEDIUM, BIG, VERYBIG};
-
     
-    private Type _2_type;
-    private Size _3_size;
+    private String _2_type;
+    private String _3_size;
     private String _1_modelName;
     
-    public Entinguisher(String _1_modelName, Type _2_type, Size _3_size) {
+    public Extinguisher(String _1_modelName, String _2_type, String _3_size) {
         this._1_modelName = _1_modelName;
         this._2_type = _2_type;
         this._3_size = _3_size;
@@ -36,22 +33,25 @@ public class Entinguisher implements Serializable{
         this._1_modelName = modelName;
     }
 
-    public Type get_2_Type() {
+    public String get_2_Type() {
         return _2_type;
     }
 
-    public void set_2_Type(Type type) {
+    public void set_2_Type(String type) {
         this._2_type = type;
     }
 
-    public Size get_3_Size() {
+    public String get_3_Size() {
         return _3_size;
     }
 
-    public void set_3_Size(Size size) {
+    public void set_3_Size(String size) {
         this._3_size = size;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Extinguisher{" + "_2_type=" + _2_type + ", _3_size=" + _3_size + ", _1_modelName=" + _1_modelName + '}';
+    }
+        
 }

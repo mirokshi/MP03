@@ -15,9 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import model.Entinguisher;
-import model.Entinguisher.Type;
-import model.Entinguisher.Size;
+import model.Extinguisher;
 import model.Model;
 import model.ModelNameValidator;
 import utilscontroller.Utils;
@@ -44,15 +42,15 @@ public class Controller {
 
     public void control() {
 
-        TableColumn tc = Utils.<Entinguisher>loadTable((ArrayList<Entinguisher>) m.getData(), v.getEntinguisherTable(), Entinguisher.class, false);
+        TableColumn tc = Utils.<Extinguisher>loadTable((ArrayList<Extinguisher>) m.getData(), v.getExtinguisherTable(), Extinguisher.class, false);
 
         ActionListener actionListener = (ActionEvent e) -> {
             //Accion boton CRUD
             if (e.getSource().equals(v.getCrudButton())) {
                 v.getModelName().setText("");
-                Utils.loadCombo(Type.values(), v.getTypeCombo());
-                Utils.loadCombo(Size.values(), v.getSizeCombo());
-                Utils.loadTable((ArrayList<Entinguisher>) m.getData(), v.getEntinguisherTable(), Entinguisher.class, false);
+                v.getTipo().setText("");
+                v.getTamaño().setText("");
+                Utils.loadTable((ArrayList<Extinguisher>) m.getData(), v.getExtinguisherTable(), Extinguisher.class, false);
                 v.getjPanel3().removeAll();
                 v.getjPanel3().repaint();
                 v.getjPanel3().revalidate();
@@ -62,7 +60,7 @@ public class Controller {
             }
             //Accion boton List
             if (e.getSource().equals(v.getListButton())) {
-                Utils.loadTable((ArrayList<Entinguisher>) m.getData(), v.getExtinguisherTableList(), Entinguisher.class, false);
+                Utils.loadTable((ArrayList<Extinguisher>) m.getData(), v.getExtinguisherTableList(), Extinguisher.class, false);
                 v.getjPanel3().removeAll();
                 v.getjPanel3().repaint();
                 v.getjPanel3().revalidate();
@@ -86,11 +84,11 @@ public class Controller {
                 
                 //Utilizo el metodo Validate de la clase que e ccreado para comprobar si el nombre del modelo es correcto
                 if (!nameValidator.validate(v.getModelName().getText().trim())) {
-                    v.showMessage("Invalid model name");
+                    v.showMessage("El model debe estar formado por dos palabras");
 
                 } else {
-                    m.addData(v.getModelName().getText().trim(), v.getTypeCombo().getSelectedItem(), v.getSizeCombo().getSelectedItem());
-                    Utils.loadTable((ArrayList<Entinguisher>) m.getData(), v.getEntinguisherTable(), Entinguisher.class, false);
+                    m.addData(v.getModelName().getText().trim(), v.getTipo().getText().trim(), v.getTamaño().getText().trim());
+                    Utils.loadTable((ArrayList<Extinguisher>) m.getData(), v.getExtinguisherTable(), Extinguisher.class, false);
                     v.cleanFields();
                 }
 
@@ -98,42 +96,42 @@ public class Controller {
             //Accion modificar
             if (e.getSource().equals(v.getModifyButton())) {
 
-                int filasel = v.getEntinguisherTable().getSelectedRow();
+                int filasel = v.getExtinguisherTable().getSelectedRow();
 
                 if (filasel != -1) {
                     //Utilizo el metodo Validate de la clase que e ccreado para comprobar si el nombre del modelo es correcto
                     if (!nameValidator.validate(v.getModelName().getText().trim())) {
-                        v.showMessage("Invalid model name");
+                        v.showMessage("El model debe estar formado por dos palabras");
 
                     } else {
-                        v.getEntinguisherTable().getColumnModel().addColumn(tc);
-                        m.modifyData(v.getEntinguisherTable().getValueAt(filasel, 3),
+                        v.getExtinguisherTable().getColumnModel().addColumn(tc);
+                        m.modifyData(v.getExtinguisherTable().getValueAt(filasel, 3),
                                 v.getModelName().getText(),
-                                v.getTypeCombo().getSelectedItem(),
-                                v.getSizeCombo().getSelectedItem());
-                        v.getEntinguisherTable().getColumnModel().removeColumn(tc);
+                                v.getTipo().getText(),
+                                v.getTamaño().getText());
+                        v.getExtinguisherTable().getColumnModel().removeColumn(tc);
 
-                        Utils.loadTable((ArrayList<Entinguisher>) m.getData(), v.getEntinguisherTable(), Entinguisher.class, false);
+                        Utils.loadTable((ArrayList<Extinguisher>) m.getData(), v.getExtinguisherTable(), Extinguisher.class, false);
                         v.cleanFields();
                     }
                 } else {
-                    v.showMessage("You have to select an item!!!");
+                    v.showMessage("Tienes que seleccionar un registro!!!");
                 }
             }
 
             //Accion borrar
             if (e.getSource().equals(v.getRemoveButton())) {
 
-                int filasel = v.getEntinguisherTable().getSelectedRow();
+                int filasel = v.getExtinguisherTable().getSelectedRow();
 
                 if (filasel != -1) {
-                    v.getEntinguisherTable().getColumnModel().addColumn(tc);
-                    m.removeData(v.getEntinguisherTable().getValueAt(filasel, 3));
-                    v.getEntinguisherTable().getColumnModel().removeColumn(tc);
-                    Utils.loadTable((ArrayList<Entinguisher>) m.getData(), v.getEntinguisherTable(), Entinguisher.class, false);
+                    v.getExtinguisherTable().getColumnModel().addColumn(tc);
+                    m.removeData(v.getExtinguisherTable().getValueAt(filasel, 3));
+                    v.getExtinguisherTable().getColumnModel().removeColumn(tc);
+                    Utils.loadTable((ArrayList<Extinguisher>) m.getData(), v.getExtinguisherTable(), Extinguisher.class, false);
                     v.cleanFields();
                 } else {
-                    v.showMessage("You have to select an item!!!");
+                    v.showMessage("Tienes que seleccionar un registro!!!");
                 }
             }
 
@@ -151,12 +149,12 @@ public class Controller {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                int filasel = v.getEntinguisherTable().getSelectedRow();
+                int filasel = v.getExtinguisherTable().getSelectedRow();
 
                 if (filasel != -1) {
-                    v.getModelName().setText(v.getEntinguisherTable().getValueAt(filasel, 0).toString());
-                    v.getTypeCombo().setSelectedItem(v.getEntinguisherTable().getValueAt(filasel, 1));
-                    v.getSizeCombo().setSelectedItem(v.getEntinguisherTable().getValueAt(filasel, 2));
+                    v.getModelName().setText(v.getExtinguisherTable().getValueAt(filasel, 0).toString());
+                    v.getTipo().setText(v.getExtinguisherTable().getValueAt(filasel, 1).toString());
+                    v.getTamaño().setText(v.getExtinguisherTable().getValueAt(filasel, 2).toString());
                 } else {
                     v.cleanFields();
                 }
@@ -164,7 +162,7 @@ public class Controller {
 
         };
 
-        v.getEntinguisherTable().addMouseListener(mouseAdapter);
+        v.getExtinguisherTable().addMouseListener(mouseAdapter);
 
         //Salir
         WindowAdapter windowAdapter = new WindowAdapter() {
@@ -175,7 +173,7 @@ public class Controller {
                     //Guardem les dades de la taula al fitxer
                     m.saveData();
                 } catch (IOException ex) {
-                    v.showMessage("Error when saving data.");
+                    v.showMessage("Error al guardar los datos");
                 }
                 System.exit(0);
             }

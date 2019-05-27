@@ -19,7 +19,7 @@ public class ModelNameValidator {
     private Matcher matcher;
 
     //La expresion regular sera correcta cuando el nombre del modelo este conformado por una palabra y una serie de numeros
-    private static final String MODELNAME_PATTERN = "([A-z]\\w+[0-9])";
+    private static final String MODELNAME_PATTERN = "([A-z]\\w+\\s[A-z])\\w+";
 
     
     public ModelNameValidator() {

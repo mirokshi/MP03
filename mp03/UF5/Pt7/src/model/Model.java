@@ -5,21 +5,18 @@
  */
 package model;
 
-import java.io.BufferedInputStream;
-import java.io.EOFException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
-import model.Entinguisher.Type;
-import model.Entinguisher.Size;
+
 
 /**
  *
@@ -27,8 +24,13 @@ import model.Entinguisher.Size;
  */
 public class Model {
 
-    private Collection<Entinguisher> data;
+    private Collection<Extinguisher> data;
     private File f;
+    final Gson gson = new GsonBuilder()
+            .setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create();
+    
 
     public Model() throws IOException, FileNotFoundException, ClassNotFoundException {
         this(null);
@@ -41,59 +43,60 @@ public class Model {
 
     public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException {
 
-        data = new ArrayList<Entinguisher>();
+        data = new ArrayList<Extinguisher>();
         if (f.exists()) {
-            try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)))) {
-
-                while (true) {
-                    Entinguisher b=(Entinguisher) in.readObject();
-                    if(b!=null) data.add(b);
-                }
-
-            } catch (EOFException e) {
-            };
+             try(Reader reader = new FileReader(f)) {
+                JsonReader jr = new JsonReader(reader);
+                jr.beginArray();
+                 while (jr.hasNext()) {
+                     data.add(gson.fromJson(jr, Extinguisher.class));
+                 }
+            } catch (Exception e) {
+                System.out.println("Error al leer");
+                 System.out.println(e);
+            }
         }
     }
 
     public void setFile(String nom) {
-        nom = nom == null || nom.isEmpty()? "data.dat" : nom;
+        nom = nom == null || nom.isEmpty()? "data.json" : nom;
         f = new File(nom);
     }
 
     public void saveData() throws FileNotFoundException, IOException {
-
-        
-        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(f))) {
-            Iterator<Entinguisher> it = data.iterator();
-            while (it.hasNext()) {
-                out.writeObject(it.next());
-            }
+          try(FileWriter writer = new FileWriter(f)) {
+                gson.toJson(data,writer);
+                System.out.println(gson.toJson(data));
+                System.out.println(data);
+        } catch (Exception e) {
+              System.out.println("Error al escribir");
+              System.out.println(e);
         }
 
     }
 
-    public void addData(String model,Object type, Object size) {
-        Entinguisher b=new Entinguisher(model,(Entinguisher.Type)type,(Entinguisher.Size)size);
+    public void addData(String model,String type, String size) {
+        Extinguisher b=new Extinguisher(model,type,size);
         data.add(b);
 
 
     }
 
-    public void modifyData(Object obj,String modelName,Object type, Object size) {
+    public void modifyData(Object obj,String modelName,String type, String size) {
        
-        Entinguisher b=(Entinguisher)obj;
+        Extinguisher b=(Extinguisher)obj;
         b.set_1_ModelName(modelName);
-        b.set_2_Type((Entinguisher.Type)type);
-        b.set_3_Size((Entinguisher.Size)size);
+        b.set_2_Type(type);
+        b.set_3_Size(size);
     }
 
     public void removeData(Object obj) {
        
-        Entinguisher b=(Entinguisher)obj;
+        Extinguisher b=(Extinguisher)obj;
         data.remove(b);
     }
 
-    public Collection<Entinguisher> getData() {
+    public Collection<Extinguisher> getData() {
         return data;
     }
     
