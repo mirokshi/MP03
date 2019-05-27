@@ -106,10 +106,12 @@ public final class controlador {
             if(e.getSource().equals(v.getBtnInsertCollection())){
                 System.out.println("Button1");
                 m.insertDocument(v.getTextAreaDocuments().getText());
+                listDocuments(e);
             }
             if (e.getSource().equals(v.getBtnBorrarCollection())) {
                 System.out.println("Button2");
                 m.deleteDocumuent(v.getTextAreaDocuments().getText());
+                listDocuments(e);
             }
             if (e.getSource().equals(v.getBtnUpdateCollection())) {
                 System.out.println("Button3");
