@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Llibreria20172018">  
+    <test name="metodes suite">
+<!--        <packages>
+            <package name="metodes"/>
+        </packages>-->
+          <groups>
+             <run>
+                 <include name="grupo1"/>
+             </run>
+          </groups>
+        <classes>
+            <class name="metodes.NumerosNGTest"/>
+        </classes>
+    </test>
+
+</suite>

@@ -15,18 +15,26 @@ public class Cadenes {
      * Mostra el missatge passat junt en el meu nom
      *
      * @param missatge el text que volem mostrar
+     * @return 
      */
-    public static void mostraMissatgeSanti(String missatge) {
+    public static String mostraMissatgeSanti(String missatge) {
 
-        System.out.println(missatge + " Santi");
+//        System.out.println(missatge + " Santi");
+       return missatge + " Santi";
 
+    }
+    
+    public static void salutation(String message){
+        message = "Hi"+ message;
+        System.out.println(message);
+        
     }
 
     public static int buscaCadena(String cadena1, String cadena2, int num) {
 
         //Casos especials
         if (cadena1 == null || cadena2 == null) {
-            return -1;
+            return 0;
         }
         if (num < 0) {
             num = 0;

@@ -72,7 +72,8 @@ public final class Controller {
                 try {
                     m.saveData();
                 } catch (IOException ex) {
-                    v.showMessage("Error when saving data.");
+                    System.out.println(ex);
+                    v.showMessage("Error al guardar los datos.");
                 }
                 System.exit(0);
 

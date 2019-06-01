@@ -18,6 +18,7 @@ public class Extinguisher implements Serializable{
     private String _3_size;
     private String _1_modelName;
     
+    
     public Extinguisher(String _1_modelName, String _2_type, String _3_size) {
         this._1_modelName = _1_modelName;
         this._2_type = _2_type;

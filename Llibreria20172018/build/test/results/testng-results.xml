@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2019-05-30T13:46:40Z" name="Llibreria20172018" finished-at="2019-05-30T13:46:40Z" duration-ms="26">
+    <groups>
+      <group name="grupo1">
+        <method signature="NumerosNGTest.testMcdRecursiu()[pri:0, instance:metodes.NumerosNGTest@67b92f0a]" name="testMcdRecursiu" class="metodes.NumerosNGTest"/>
+        <method signature="NumerosNGTest.testRevesNumerov1()[pri:0, instance:metodes.NumerosNGTest@67b92f0a]" name="testRevesNumerov1" class="metodes.NumerosNGTest"/>
+      </group> <!-- grupo1 -->
+    </groups>
+    <test started-at="2019-05-30T13:46:40Z" name="metodes suite" finished-at="2019-05-30T13:46:40Z" duration-ms="26">
+      <class name="metodes.NumerosNGTest">
+        <test-method signature="testMcdRecursiu()[pri:0, instance:metodes.NumerosNGTest@67b92f0a]" started-at="2019-05-30T15:46:40Z" name="testMcdRecursiu" finished-at="2019-05-30T15:46:40Z" duration-ms="15" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMcdRecursiu -->
+        <test-method signature="testRevesNumerov1()[pri:0, instance:metodes.NumerosNGTest@67b92f0a]" started-at="2019-05-30T15:46:40Z" name="testRevesNumerov1" finished-at="2019-05-30T15:46:40Z" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRevesNumerov1 -->
+      </class> <!-- metodes.NumerosNGTest -->
+    </test> <!-- metodes suite -->
+  </suite> <!-- Llibreria20172018 -->
+</testng-results>

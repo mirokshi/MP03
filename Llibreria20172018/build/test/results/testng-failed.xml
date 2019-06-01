@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Llibreria20172018]">
+  <test name="metodes suite(failed)">
+    <groups>
+      <run>
+        <include name="grupo1"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="metodes.NumerosNGTest">
+        <methods>
+          <include name="testMcdRecursiu"/>
+        </methods>
+      </class> <!-- metodes.NumerosNGTest -->
+    </classes>
+  </test> <!-- metodes suite(failed) -->
+</suite> <!-- Failed suite [Llibreria20172018] -->

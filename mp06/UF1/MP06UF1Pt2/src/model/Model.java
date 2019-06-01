@@ -26,11 +26,11 @@ public class Model {
 
     private Collection<Extinguisher> data;
     private File f;
-    final Gson gson = new GsonBuilder()
-            .setPrettyPrinting()
-            .excludeFieldsWithoutExposeAnnotation()
-            .create();
-    
+//    final Gson gson = new GsonBuilder()
+//            .setPrettyPrinting()
+//            .excludeFieldsWithoutExposeAnnotation()
+//            .create();
+//    
 
     public Model() throws IOException, FileNotFoundException, ClassNotFoundException {
         this(null);
@@ -44,16 +44,21 @@ public class Model {
     public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException {
 
         data = new ArrayList<Extinguisher>();
+        String type = null,size =  null,modelName = null;
+        Extinguisher extinguisher = new Extinguisher(type,size,modelName);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(extinguisher);
         if (f.exists()) {
-             try(Reader reader = new FileReader(f)) {
+             try(FileReader reader = new FileReader(f)) {
                 JsonReader jr = new JsonReader(reader);
                 jr.beginArray();
                  while (jr.hasNext()) {
+                     System.out.println(json);
                      data.add(gson.fromJson(jr, Extinguisher.class));
                  }
             } catch (Exception e) {
                 System.out.println("Error al leer");
-                 System.out.println(e);
+                System.out.println(e);
             }
         }
     }
@@ -64,26 +69,23 @@ public class Model {
     }
 
     public void saveData() throws FileNotFoundException, IOException {
+        
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
           try(FileWriter writer = new FileWriter(f)) {
                 gson.toJson(data,writer);
                 System.out.println(gson.toJson(data));
-                System.out.println(data);
         } catch (Exception e) {
               System.out.println("Error al escribir");
               System.out.println(e);
         }
-
     }
 
     public void addData(String model,String type, String size) {
         Extinguisher b=new Extinguisher(model,type,size);
         data.add(b);
-
-
     }
 
     public void modifyData(Object obj,String modelName,String type, String size) {
-       
         Extinguisher b=(Extinguisher)obj;
         b.set_1_ModelName(modelName);
         b.set_2_Type(type);
@@ -91,7 +93,6 @@ public class Model {
     }
 
     public void removeData(Object obj) {
-       
         Extinguisher b=(Extinguisher)obj;
         data.remove(b);
     }
